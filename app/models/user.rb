@@ -10,3 +10,4 @@ class User < ApplicationRecord
   validates :email, uniqueness: true, format: { with: /\A.*@.*\.com\z/ }
   validates :phone_number, presence: true
 end
+
