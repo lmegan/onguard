@@ -8,6 +8,7 @@
 # #   Character.create(name: 'Luke', movie: movies.first)
 EmergencyContact.destroy_all
 
+
 emergencycontact1 = EmergencyContact.create(first_name: 'hey', last_name: 'ho', phone_number: 'heoo')
 emergencycontact2 = EmergencyContact.create(first_name: 'heyy', last_name: 'hoo', phone_number: 'heoooooo')
 
