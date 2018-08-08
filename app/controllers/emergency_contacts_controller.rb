@@ -2,7 +2,7 @@ class EmergencyContactsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @emergencycontacts = EmergencyContact.all
+    @emergencycontacts = EmergencyContact.where(user: current_user)
   end
 
   def show
@@ -14,7 +14,7 @@ class EmergencyContactsController < ApplicationController
   end
 
   def create
-    @emergencycontact = Emergencycontact.new(emcon_params)
+    @emergencycontact = EmergencyContact.new(emcon_params)
     if @emergencycontact.save
       redirect_to @emergencycontact, notice: 'Successfully created a new emergency contact.'
     else
