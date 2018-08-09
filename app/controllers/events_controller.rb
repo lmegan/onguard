@@ -9,6 +9,7 @@ class EventsController < ApplicationController
     @user = @event.user
   end
 
+
   def new
     @event = Event.new
     @user = current_user

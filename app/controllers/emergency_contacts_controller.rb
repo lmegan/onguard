@@ -3,24 +3,24 @@ class EmergencyContactsController < ApplicationController
 
 
   def index
-    @emergencycontacts = EmergencyContact.where(user: current_user)
+    @emergency_contacts = EmergencyContact.where(user: current_user)
   end
 
   def show
     @user = current_user
-    @emergencycontact = EmergencyContact.find(params[:id])
+    @emergency_contact = EmergencyContact.find(params[:id])
   end
 
   def new
-    @emergencycontact = EmergencyContact.new
+    @emergency_contact = EmergencyContact.new
     @user = current_user
   end
 
   def create
-    @emergencycontact = EmergencyContact.new(emcon_params)
+    @emergency_contact = EmergencyContact.new(emcon_params)
     @user = current_user
-    @emergencycontact.user = @user
-    if @emergencycontact.save
+    @emergency_contact.user = @user
+    if @emergency_contact.save
       redirect_to root_path, notice: 'Successfully created a new emergency contact.'
     else
       render :new
@@ -28,13 +28,13 @@ class EmergencyContactsController < ApplicationController
   end
 
   def edit
-    @emergencycontact = EmergencyContact.find(params[:id])
+    @emergency_contact = EmergencyContact.find(params[:id])
     @user = current_user
   end
 
   def update
-    @emergencycontact = EmergencyContact.find(params[:id])
-    if @emergencycontact.update(emcon_params)
+    @emergency_contact = EmergencyContact.find(params[:id])
+    if @emergency_contact.update(emcon_params)
       redirect_to root_path, notice: 'Successfully updtaed the emergency contact.'
     else
       render :edit
@@ -42,8 +42,8 @@ class EmergencyContactsController < ApplicationController
   end
 
   def destroy
-    @emergencycontact = EmergencyContact.find(params[:id])
-    if @emergencycontact.destroy
+    @emergency_contact = EmergencyContact.find(params[:id])
+    if @emergency_contact.destroy
       redirect_to emergency_contacts_path, notice: 'Successfully deleted a new emergency contact.'
     end
   end
