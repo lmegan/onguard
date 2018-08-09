@@ -1,3 +1,13 @@
-<h1>Events#show</h1>
-<p>Find me in app/views/events/show.html.erb</p>
-<p>It works</p>
+<h2><%= @event.name %></h2>
+<p><%= @event.description %></p>
+<p><%= @event.location %></p>
+<p><%= @event.start_date %></p>
+<p><%= @event.end_date %></p>
+<p><%= @event.start_time %></p>
+<p><%= @event.end_time %></p>
+<p><%= @event.active %></p>
+<%= link_to "Edit", edit_event_path(@event) %>
+ <%= link_to "Delete event", event_path(@event),
+      method: :delete,
+      data: { confirm: "Are you sure?" } %>
+
