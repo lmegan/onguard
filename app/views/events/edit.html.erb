@@ -1,2 +1,13 @@
 <h1>Events#edit</h1>
 <p>Find me in app/views/events/edit.html.erb</p>
+<%= simple_form_for @event do |f| %>
+  <%= f.input :name %>
+  <%= f.input :start_date %>
+  <%= f.input :end_date %>
+  <%= f.input :start_time %>
+  <%= f.input :end_time %>
+  <%= f.input :description %>
+  <%= f.input :location %>
+  <%= f.input :active, as: :boolean %>
+  <%= f.submit "Update Event", class: "btn btn-primary" %>
+<% end %>
