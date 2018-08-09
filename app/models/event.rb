@@ -1,6 +1,7 @@
 class Event < ApplicationRecord
   belongs_to :user
   has_many :emergency_contact_events, dependent: :destroy
+  has_many :event_logs
   validates :name, presence: true
   validates :location, presence: true
   validates :description, presence: true
