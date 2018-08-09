@@ -17,6 +17,11 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @user = current_user
+    if DateTime.now >= @event.start_date && DateTime.now <= @event.end_date
+      @event.active = true
+    else
+      @event.active = false
+    end
     @event.user = @user
     if @event.save
       redirect_to event_path(@event)
