@@ -1,2 +1,13 @@
 <h1>Events#new</h1>
 <p>Find me in app/views/events/new.html.erb</p>
+<%= simple_form_for [@user, @event] do |f| %>
+  <%= f.input :name %>
+  <%= f.input :start_date %>
+  <%= f.input :end_date %>
+  <%= f.input :start_time %>
+  <%= f.input :end_time %>
+  <%= f.input :description %>
+  <%= f.input :location %>
+  <%= f.input :active, :as => :hidden %>
+  <%= f.submit "add a review", class: "btn btn-primary" %>
+<% end %>
