@@ -1,10 +1,8 @@
 Rails.application.routes.draw do
-  resources :users, only: [:show] do
-    resources :events do
-      resources :event_logs, only: [:show]
-    end
+  get '/dashboard', to: 'users#dashboard', as: 'dashboard'
+  resources :events do
+    resources :event_logs, only: [:show]
   end
-  get "dashboard", to: "users#dashboard", as: "user_dashboard"
   resources :emergency_contacts
   devise_for :users
   root to: 'pages#home'
