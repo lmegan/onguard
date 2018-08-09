@@ -5,3 +5,13 @@
 <%= emergencycontact.first_name %>
 <%= emergencycontact.last_name %>
 <%= emergencycontact.phone_number %>
+<%= link_to 'show', emergency_contact_path(emergencycontact.id) %>
+<%= link_to 'edit', edit_emergency_contact_path(emergencycontact.id) %>
+<%= link_to 'Destroy',  emergency_contact_path(emergencycontact.id), method: :delete %>
+<%end %>
+
+
+<h4>add 1 emrcontact</h4>
+
+<%= link_to 'add', new_emergency_contact_path %>
+
