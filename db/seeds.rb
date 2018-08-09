@@ -7,6 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 Event.destroy_all
 User.destroy_all
+EmergencyContact.destroy_all
+
 
 user1 = User.create!(first_name: "Lady", last_name: "Gaga", email: "email@email.com", password: "******", phone_number: "087483756234")
 
@@ -20,5 +22,10 @@ event1 = Event.create!(
   start_time: Time.now,
   end_time: Time.now - 1.hour
 )
+
+emergencycontact1 = EmergencyContact.create(first_name: 'hey', last_name: 'ho', phone_number: 'heoo')
+emergencycontact2 = EmergencyContact.create(first_name: 'heyy', last_name: 'hoo', phone_number: 'heoooooo')
+
+
 
 

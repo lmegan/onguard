@@ -1,2 +1,7 @@
 <h1>EmergencyContacts#index</h1>
 <p>Find me in app/views/emergency_contacts/index.html.erb</p>
+
+<% @emergencycontacts.each do |emergencycontact| %>
+<%= emergencycontact.first_name %>
+<%= emergencycontact.last_name %>
+<%= emergencycontact.phone_number %>
