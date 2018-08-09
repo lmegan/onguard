@@ -1,27 +1,55 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>TODO</title>
-    <%= csrf_meta_tags %>
-    <%= action_cable_meta_tag %>
-    <%= stylesheet_link_tag 'application', media: 'all' %>
-    <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
-  </head>
-  <body>
-    <%= render 'shared/navbar' %>
-    <%= render 'shared/flashes' %>
-    <%= yield %>
-    <!-- facebook login stuff -->
-    <% unless current_user %>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>TODO</title>
+  <%= csrf_meta_tags %>
+  <%= action_cable_meta_tag %>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
+</head>
+<body>
+  <%= render 'shared/navbar' %>
+  <%= render 'shared/flashes' %>
+  <%= yield %>
+  <!-- facebook login stuff -->
+  <% unless current_user %>
   <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %>
-<% else %>
+  <% else %>
   <%= current_user[:name] %>
   <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-<% end %>
-<!-- faceboook login stuff -->
-    <%= javascript_include_tag 'application' %>
-    <%= javascript_pack_tag 'application' %>
-  </body>
-</html>
+  <% end %>
+  <!-- faceboook login stuff -->
+
+  <% if user_signed_in? && current_user[:phone_number] == nil %>
+
+  <div class="modal fade" tabindex="-1" role="dialog" id="my-modal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">One more thing...</h4>
+        </div>
+        <div class="modal-body">
+          <p>In order for you to be able to interact with onguard via facebook messenger, please provide us with your phone number that is connected to your facebook account. &hellip;</p>
+          Your Phone number:<br>
+
+          <%= simple_form_for current_user, url: complete_profile_path, method: :patch do |f| %>
+          <%= f.input :phone_number %>
+          <%= f.button :submit, "Submit", class:"btn-primary btn" %>
+          <% end %>
+
+          </div>
+          <div class="modal-footer">
+       </div><!-- /.modal-content -->
+     </div><!-- /.modal-dialog -->
+   </div><!-- /.modal -->
+
+   <% else %>
+   <% link_to root_path %>
+   <% end %>
+
+   <%= javascript_include_tag 'application' %>
+   <%= javascript_pack_tag 'application' %>
+ </body>
+ </html>

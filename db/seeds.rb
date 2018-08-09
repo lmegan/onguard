@@ -15,12 +15,11 @@ user1 = User.create!(first_name: "Lady", last_name: "Gaga", email: "email@email.
 event1 = Event.create!(
   name:"event name",
   start_date: Time.now,
-  end_date: Time.now - 1.hour,
+  end_date: Time.now + 1.hour,
   location:"the lawn",
   description:"event description",
   user: user1,
-  start_time: Time.now,
-  end_time: Time.now - 1.hour
+
 )
 
 emergencycontact1 = EmergencyContact.create(first_name: 'hey', last_name: 'ho', phone_number: 'heoo')
