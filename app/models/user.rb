@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :events, dependent: :destroy
   validates :first_name, presence: true
   # validates :last_name, presence: true
-  validates :email, uniqueness: true, format: { with: /\A.*@.*\.com\z/ }
+  validates :email, uniqueness: true
   # validates :phone_number, presence: true
 
 # facebook login stuff below
