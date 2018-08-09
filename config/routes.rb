@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-
-devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   get '/dashboard', to: 'users#dashboard', as: 'dashboard'
   resources :events do
     resources :event_logs, only: [:show]
