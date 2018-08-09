@@ -5,7 +5,11 @@
 <p><%= @event.end_date %></p>
 <p><%= @event.start_time %></p>
 <p><%= @event.end_time %></p>
-<p><%= @event.active %></p>
+<% if @event.active == true %>
+<p>Active</p>
+<% elsif @event.active == false %>
+<p>Inactive</p>
+<% end %>
 <%= link_to "Edit", edit_event_path(@event) %>
  <%= link_to "Delete event", event_path(@event),
       method: :delete,
