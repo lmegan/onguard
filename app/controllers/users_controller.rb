@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     @client = Twilio::REST::Client.new(account_sid, auth_token)
 
     message = @client.messages.create(
-                             body: 'Hello there!',
+                             body: "Hello there #{app.event_url(Event.first, host: "localhost:3000")}!",
                              from: 'whatsapp:+441618507453',
                              to: 'whatsapp:+18033671560'
                            )
