@@ -14,10 +14,7 @@ class UsersController < ApplicationController
   end
 
   def panic_button
-    account_sid = 'AC520aebb72ea41ef9497bc18c58428fe8'
-    auth_token = 'b4e31df5314f1d6ff3f7d57a29d79b79'
-    @client = Twilio::REST::Client.new(account_sid, auth_token)
-
+    @client = Twilio::REST::Client.new(ENV['ACCOUNT_SID'], ENV['AUTH_TOKEN'])
     message = @client.messages.create(
                              body: 'Hello there!',
                              from: 'whatsapp:+441618507453',
