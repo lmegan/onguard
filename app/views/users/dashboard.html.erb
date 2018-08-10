@@ -1,3 +1,81 @@
 <h1>Users#dashboard</h1>
-<p>Find me in app/views/users/dashboard.html.erb</p>
+
+<div class="dashboard-container">
+  <div class="row">
+    <div id="row1" class="col-xs-12 col-lg-4">
+      <div class="user-profile">
+        User Profile
+        <h4><%= @user.first_name %><%= @user.last_name %></h4>
+      </div>
+    </div>
+    <div id="row1" class="col-xs-12 col-lg-4">
+      <div class="contacts">
+        Emergency Contacts
+      </div>
+    </div>
+    <div id="row1" class="ccol-xs-12 col-lg-4">
+      <div class="calendar">
+        Calendar
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div id="row2" class="col-xs-12 col-lg-6">
+      <div class="todays-events">
+        Todays Events
+      </div>
+    </div>
+    <div id="row2" class="col-xs-12 col-lg-6">
+      <div class="db-chatbot">
+        Chatbot info and link
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div id="row3" class="col-xs-12 col-lg-6">
+      <div class="active-events">
+        List of Active Events
+      </div>
+    </div>
+    <div id="row3" class="ccol-xs-12 col-lg-6">
+      <div class="inactive-events">
+        List of Inactive Events
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Create an Event</button>
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add an Event</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for @event do |f| %>
+          <%= f.input :name %>
+          <div>
+          <%= f.input :start_date, as: :string, label: 'Start date (YYYY/MM/DD)'%>
+          <%= f.input :end_date, as: :string, label: 'End date (YYYY/MM/DD)' %>
+          </div>
+          <%= f.input :start_time, as: :string, label: 'Start time (HH:MM)' %>
+          <%= f.input :end_time, as: :string, label: 'End time (HH:MM)'  %>
+          <%= f.input :description %>
+          <%= f.input :location %>
+          <%= f.input :active, :as => :hidden %>
+          <%= f.submit "Add Event", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
