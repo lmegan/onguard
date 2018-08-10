@@ -5,17 +5,27 @@ class UsersController < ApplicationController
     @event = Event.new
     @user = current_user
   end
+<<<<<<< HEAD
    def complete_profile
+=======
+
+  def complete_profile
+>>>>>>> 7deb0c9a9542a548d409252793e5db05261c26b5
     @user = current_user
     @user.phone_number = params[:user][:phone_number]
     @user.save
     redirect_to dashboard_path
   end
 
+<<<<<<< HEAD
 
   def panic_button
     @client = Twilio::REST::Client.new(ENV['ACCOUNT_SID'], ENV['AUTH_TOKEN'])
 
+=======
+  def panic_button
+    @client = Twilio::REST::Client.new(ENV['ACCOUNT_SID'], ENV['AUTH_TOKEN'])
+>>>>>>> 7deb0c9a9542a548d409252793e5db05261c26b5
     message = @client.messages.create(
                              body: 'Hello there!',
                              from: 'whatsapp:+441618507453',
