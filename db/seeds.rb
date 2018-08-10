@@ -37,5 +37,7 @@ emergency_contact1 = EmergencyContact.create(first_name: 'hey', last_name: 'ho',
 emergency_contact2 = EmergencyContact.create(first_name: 'heyy', last_name: 'hoo', phone_number: 'heoooooo')
 
 event_log1 = EventLog.create(date_time: Time.now, description: "some message with details", event: event1)
+event_log2 = EventLog.create(date_time: Time.now + 1.hour, description: "more text", event: event1)
+event_log3 = EventLog.create(date_time: Time.now, description: "Lorem ipsum dolor sit amet, eu mei elit abhorreant, cibo omnis tempor et eam, at eum meliore aliquando", event: event1)
 
 

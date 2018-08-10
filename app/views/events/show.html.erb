@@ -1,25 +1,24 @@
 
 <div class="event-show-container">
-  <div class="row">
-    <div class="event-show-name"><h2><%= @event.name %></h2> <span class="event-status"><% if @event.active == true %>
-          <p>Status: Active</p>
-          <% elsif @event.active == false %>
-          <p>Status: Inactive</p>
-          <% end %> </span></div>
-    <div class="col-xs-8">
-      <div class="event-details-left">
-        <div class="event-show-description"><p><%= @event.description %></p></div>
-        <div class="event-location"></div>
-        <div class="event-dates">
-          <p>Event Starts: <%= @event.start_date %></p>
-          <p>Event  Ends: <%= @event.end_date %></p>
+  <div class="top-event-container">
+    <div class="row">
+      <div class="event-show-name"><h2><%= @event.name %></h2> <span class="event-status"><% if @event.active == true %>
+            <p>Status: Active</p>
+            <% elsif @event.active == false %>
+            <p>Status: Inactive</p>
+            <% end %> </span></div>
+      <div class="col-xs-12 col-sm-8">
+        <div class="event-details-left">
+          <div class="event-show-description"><p><%= @event.description %></p></div>
+          <div class="event-location"></div>
+          <div class="event-dates">
+            <p>Event Starts: <%= @event.start_date %></p>
+            <p>Event  Ends: <%= @event.end_date %></p>
+          </div>
         </div>
       </div>
+      <div class="col-sm-4"><img class="event-photo" src="https://picsum.photos/200/300/?random"></div>
     </div>
-    <div class="col-xs-4">
-      <img class="event-photo" src="https://picsum.photos/200/300/?random">
-    </div>
-  </div>
   <div class="row">
     <div class="col-xs-12 col-sm-12">
       <div class="links-from-event-show-page">
@@ -31,27 +30,34 @@
               <span class="btn-standard" class="event-deactivate-trigger">
                 <%= link_to "Deactivate Event", deactivate_event_path(@event), method: :post %>
                   <% end %>
-                </span>
+              </span>
       </div>
     </div>
   </div>
+  </div>
 
-
-  <div class="row">
-      <table class="event-log-table">
-    <tr>
-      <th align="center"> Date </th>
-      <th> Details </th>
-      <th> Attachments</th>
-    </tr>
+<ul class="inbox">
     <% @event_logs.each do |event_log| %>
-    <tr>
-    <td><%= event_log.date_time %></td>
-    <td><%= event_log.description %></td>
-    <td><%= event_log.attachment %></td>
-    </tr>
-    <% end %>
-    </table>
+        <li class="message">
+          <div class="message-date">
+            <p><strong>Date Received</strong></p>
+            <p><%= event_log.date_time %></p>
+          </div>
+          <div class="message-body">
+            <p><%= event_log.description %></p>
+          </div>
+          <div class="message-status">
+            <p class="message-name">Attachment</p>
+            <p class="price"><% if event_log.attachment = !nil %>
+              <%= "yes"%>
+              <% end  %>
+            </p>
+          </div>
+        </li>
+        <% end %>
+      </ul>
+
+    </div>
   </div>
 </div>
 
