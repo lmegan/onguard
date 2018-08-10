@@ -21,7 +21,7 @@ class EmergencyContactsController < ApplicationController
     @user = current_user
     @emergency_contact.user = @user
     if @emergency_contact.save
-      redirect_to root_path, notice: 'Successfully created a new emergency contact.'
+      redirect_to dashboard_path, notice: 'Successfully created a new emergency contact.'
     else
       render :new
     end

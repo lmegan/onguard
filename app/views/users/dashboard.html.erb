@@ -1,17 +1,80 @@
 <div class="dashboard-container">
-  <div class="dashboard-row">
+  <div class="row dashboard-row">
     <div class="col-lg-8 col-xs-12">
-      column 1
-      <%= link_to "help", emergency_path, method: :post %>
+      <div class="row">
+        <div class = "col-md-6">
+          <div class="card">
+            <div class="card-description">
+              <h2>Welcome, <%= @user.first_name %><%= " " %><%= @user.last_name %></h2>
+            </div>
+            <img class="card-user" src="https://kitt.lewagon.com/placeholder/users/tgenaitay">
+            <button type="button" id="event-button" data-toggle="modal" data-target=".bd-example-modal-lg">Create a new Event</button>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card2">
+            Google Calendar
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class= "col-md-12">
+          <% @events.each do |event| %>
+          <%= link_to event_path(event) do %>
+          <div class="event-card">
+            <div class="event-card-name">
+              <%= event.name %>
+              <%= event.start_date %>
+              <%= event.end_date %>
+            </div>
+            <div class="event-card-description">
+              <%= event.description %>
+            </div>
+            <div class="event-card-location">
+              <%= event.location %>
+              <!-- <img class="dashboard-map" src="hhttps://www.geneva.il.us/ImageRepository/Document?documentID=3697"> -->
+            </div>
+          </div>
+          <% end %>
+          <% end %>
+        </div>
+      </div>
     </div>
-    <div class="col-lg-8 col-xs-12">
-      column 2
+    <div class="col-lg-4 col-xs-12">
+      <div class="emergency">
+        <div class="emerg-button">
+          <%= link_to "Notify Contacts", emergency_path, method: :post, :class=> "help" %>
+        </div>
+        <div>
+          <p class="notice">Please note, if you are in serious danger please also contact your local authorities.</p>
+        </div>
+        <div>
+          <p class="notice-info">Clicking the link above will notify the emergency contacts you specified for your current event. They will receive a Whatsapp message that contains a link directing them to a page with your event details and event log.</p>
+        </div>
+      </div>
+      <div class="emergency-contact-list">
+        <h5>Your current emergency contacts:</h5>
+        <ul>
+          <% @emergency_contacts.each do |emergency_contact| %>
+          <li><%= emergency_contact.first_name %>
+          <%= emergency_contact.last_name %>
+          <%= - emergency_contact.phone_number %></li>
+        </ul>
+        <% end %>
+        <div>
+        <button type="button" class="contact-button" data-toggle="modal" data-target=".bd-example-modal-sm">Add an emergency contact</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Create an Event</button>
+
+
+
+
+
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -23,17 +86,13 @@
       </div>
       <div class="modal-body">
         <%= simple_form_for @event do |f| %>
-          <%= f.input :name %>
-          <div>
-          <%= f.input :start_date, as: :string, label: 'Start date (YYYY/MM/DD)'%>
-          <%= f.input :end_date, as: :string, label: 'End date (YYYY/MM/DD)' %>
-          </div>
-         <%= f.input :start_time, as: :string, label: 'Start time (HH:MM)' %>
-          <%= f.input :end_time, as: :string, label: 'End time (HH:MM)'  %>
-          <%= f.input :description %>
-          <%= f.input :location %>
-          <%= f.input :active, :as => :hidden %>
-          <%= f.submit "Add Event", class: "btn btn-primary" %>
+        <%= f.input :name %>
+        <%= f.input :start_time, as: :string, label: 'Start time (HH:MM)' %>
+        <%= f.input :end_time, as: :string, label: 'End time (HH:MM)'  %>
+        <%= f.input :description %>
+        <%= f.input :location %>
+        <%= f.input :active, :as => :hidden %>
+        <%= f.submit "Add Event", class: "btn btn-primary" %>
         <% end %>
       </div>
       <div class="modal-footer">
@@ -43,3 +102,26 @@
   </div>
 </div>
 
+<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add an emergency contact</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for @emergency_contact do |f| %>
+          <%= f.input :first_name %>
+          <%= f.input :last_name %>
+          <%= f.input :phone_number %>
+          <%= f.submit "Add Contact", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
