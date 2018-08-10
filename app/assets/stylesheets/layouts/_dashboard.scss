@@ -1,0 +1,58 @@
+.dashboard-container {
+  display: grid;
+}
+
+#row1 {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 50px;
+  margin-top: 30px;
+}
+
+.user-profile {
+  height: 35vh;
+  width: 400px;
+  outline: 1px solid black;
+}
+.contacts {
+  height: 35vh;
+  width: 400px;
+  outline: 1px solid black;
+}
+.calendar {
+  height: 35vh;
+  width: 400px;
+  outline: 1px solid black;
+}
+
+#row2 {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 50px;
+  margin-top: 30px;
+}
+.todays-events {
+  height: 40vh;
+  width: 600px;
+  outline: 1px solid black;
+}
+.db-chatbot {
+  height: 40vh;
+  width: 600px;
+  outline: 1px solid black;
+}
+
+#row3 {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 50px;
+  margin-top: 30px;
+}
+.active-events {
+
+}
+.inactive-events {
+
+}
+
+
