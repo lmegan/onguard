@@ -1,12 +1,14 @@
 // main page container
 .event-show-container {
-margin: 20px;
+margin-left: 30px;
+margin-right: 30px;
 
 }
 
 
 .event-show-name {
-  margin-left: 20px;
+padding-left: 15px;
+color: #5c696f;
 }
 
 .event-show-description {
@@ -19,14 +21,35 @@ font-weight: lighter;
 
 
 .event-dates {
-
+color: #5c696f;
 }
 
 .links-from-event-show-page {
-
+margin-top: 20px;
 }
 
 .event-photo {
 height: 200px;
-width: 200px;
+width: 300px;
+
+
+}
+
+.event-log-table {
+margin: 30px;
+
+
+
+
+  td {
+    padding: 5px 20px;
+    font-weight: lighter;
+    border-top: 1px solid #5c696f;
+
+  }
+  th {
+    padding: 10px 20px;
+    color: #5c696f;
+
+  }
 }

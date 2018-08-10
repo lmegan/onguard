@@ -28,15 +28,14 @@ event1 = Event.create!(
   start_date: Time.now,
   end_date: Time.now + 1.hour,
   location:"the lawn",
-  description:"event description",
+  description:"Lorem ipsum dolor sit amet, eu mei elit abhorreant, cibo omnis tempor et eam, at eum meliore aliquando. Ad sea tale explicari urbanitas, id falli eirmod scripta his. Eam et ornatus antiopam, ea ius phaedrum efficiendi mediocritatem, eam ut reque omnes putant. Mei ne essent sententiae, vel prompta suscipit accusamus ad, cu tation cetero quo. Ut volumus nostrum definitiones per, et omnis tacimates elaboraret qui. Ex nec putant propriae oporteat, corrumpit cotidieque pro ne. Virtute molestie te mea, ea novum percipitur vix.",
   user: user1,
 
 )
 
-emergencycontact1 = EmergencyContact.create(first_name: 'hey', last_name: 'ho', phone_number: 'heoo')
-emergencycontact2 = EmergencyContact.create(first_name: 'heyy', last_name: 'hoo', phone_number: 'heoooooo')
+emergency_contact1 = EmergencyContact.create(first_name: 'hey', last_name: 'ho', phone_number: 'heoo')
+emergency_contact2 = EmergencyContact.create(first_name: 'heyy', last_name: 'hoo', phone_number: 'heoooooo')
 
-
-
+event_log1 = EventLog.create(date_time: Time.now, description: "some message with details", event: event1)
 
 

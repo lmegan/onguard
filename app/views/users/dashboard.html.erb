@@ -87,10 +87,6 @@
       <div class="modal-body">
         <%= simple_form_for @event do |f| %>
         <%= f.input :name %>
-        <div>
-          <%= f.input :start_date, as: :string, label: 'Start date (YYYY/MM/DD)'%>
-          <%= f.input :end_date, as: :string, label: 'End date (YYYY/MM/DD)' %>
-        </div>
         <%= f.input :start_time, as: :string, label: 'Start time (HH:MM)' %>
         <%= f.input :end_time, as: :string, label: 'End time (HH:MM)'  %>
         <%= f.input :description %>

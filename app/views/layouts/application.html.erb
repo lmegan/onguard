@@ -26,26 +26,7 @@
 
   <% if user_signed_in? && current_user[:phone_number] == nil %>
 
-  <div class="modal fade" tabindex="-1" role="dialog" id="my-modal">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">One more thing...</h4>
-        </div>
-        <div class="modal-body">
-          <p>In order for you to be able to interact with onguard via facebook messenger, please provide us with your phone number that is connected to your facebook account. &hellip;</p>
-          Your Phone number:<br>
-
-          <%= simple_form_for current_user, url: complete_profile_path, method: :patch do |f| %>
-          <%= f.input :phone_number %>
-          <%= f.button :submit, "Submit", class:"btn-primary btn" %>
-          <% end %>
-
-          </div>
-          <div class="modal-footer">
-       </div><!-- /.modal-content -->
-     </div><!-- /.modal-dialog -->
-   </div><!-- /.modal -->
+  <%= render 'shared/phone_form', user: current_user %>
 
    <% else %>
    <% link_to root_path %>
