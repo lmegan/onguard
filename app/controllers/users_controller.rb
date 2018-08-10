@@ -12,6 +12,18 @@ class UsersController < ApplicationController
     redirect_to dashboard_path
   end
 
+
+  def panic_button
+    @client = Twilio::REST::Client.new(ENV['ACCOUNT_SID'], ENV['AUTH_TOKEN'])
+
+    message = @client.messages.create(
+                             body: 'Hello there!',
+                             from: 'whatsapp:+441618507453',
+                             to: 'whatsapp:+18033671560'
+                           )
+    redirect_to dashboard_path, notice: "Your emergency contacts have been notified."
+  end
+
   private
 
   def user_params
