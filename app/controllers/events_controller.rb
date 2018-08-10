@@ -25,7 +25,7 @@ class EventsController < ApplicationController
     end
     @event.user = @user
     if @event.save
-      redirect_to event_path(@event)
+      redirect_to dashboard_path
     else
       render :new
     end

@@ -4,6 +4,8 @@ class UsersController < ApplicationController
     @events = current_user.events
     @event = Event.new
     @user = current_user
+    @emergency_contacts = EmergencyContact.where(user: current_user)
+    @emergency_contact = EmergencyContact.new
   end
 
   def complete_profile
