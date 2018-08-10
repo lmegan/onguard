@@ -8,4 +8,5 @@ devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_call
   root to: 'pages#home'
   patch "complete_profile", to: "users#complete_profile", as: "complete_profile"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  post "/emergency_contact", to: "users#panic_button", as: "emergency"
 end
