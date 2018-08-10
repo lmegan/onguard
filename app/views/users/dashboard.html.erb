@@ -1,47 +1,11 @@
-<h1>Users#dashboard</h1>
-
 <div class="dashboard-container">
-  <div class="row">
-    <div id="row1" class="col-xs-12 col-lg-4">
-      <div class="user-profile">
-        User Profile
-        <h4><%= @user.first_name %><%= @user.last_name %></h4>
-      </div>
+  <div class="dashboard-row">
+    <div class="col-lg-8 col-xs-12">
+      column 1
+      <%= link_to "help", emergency_path, method: :post %>
     </div>
-    <div id="row1" class="col-xs-12 col-lg-4">
-      <div class="contacts">
-        Emergency Contacts
-      </div>
-    </div>
-    <div id="row1" class="ccol-xs-12 col-lg-4">
-      <div class="calendar">
-        Calendar
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div id="row2" class="col-xs-12 col-lg-6">
-      <div class="todays-events">
-        Todays Events
-      </div>
-    </div>
-    <div id="row2" class="col-xs-12 col-lg-6">
-      <div class="db-chatbot">
-        Chatbot info and link
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div id="row3" class="col-xs-12 col-lg-6">
-      <div class="active-events">
-        List of Active Events
-      </div>
-    </div>
-    <div id="row3" class="ccol-xs-12 col-lg-6">
-      <div class="inactive-events">
-        List of Inactive Events
-      </div>
+    <div class="col-lg-8 col-xs-12">
+      column 2
     </div>
   </div>
 </div>
