@@ -19,23 +19,33 @@
       </div>
       <div class="row">
         <div class= "col-md-12">
-          <% @events.each do |event| %>
-          <%= link_to event_path(event) do %>
-          <div class="event-card">
-            <div class="event-card-name">
-              <%= event.name %>
-              <%= event.start_date %>
-              <%= event.end_date %>
+          <% if @events.count >= 1  %>
+            <% @events.each do |event| %>
+            <%= link_to event_path(event) do %>
+            <div class="event-card">
+              <div class="col-xs-3">
+                <div class="event-card-name">
+                  <%= event.name %>
+                  <%= event.start_date %>
+                  <%= event.end_date %>
+                </div>
+              </div>
+              <div class="col-xs-6">
+                <div class="event-card-description">
+                  <%= event.description %>
+                </div>
+              </div>
+              <div class="col-xs-3">
+                <div class="event-card-location">
+                  <%= event.location %>
+                  <!-- <img class="dashboard-map" src="hhttps://www.geneva.il.us/ImageRepository/Document?documentID=3697"> -->
+                </div>
+              </div>
             </div>
-            <div class="event-card-description">
-              <%= event.description %>
-            </div>
-            <div class="event-card-location">
-              <%= event.location %>
-              <!-- <img class="dashboard-map" src="hhttps://www.geneva.il.us/ImageRepository/Document?documentID=3697"> -->
-            </div>
-          </div>
-          <% end %>
+            <% end %>
+            <% end %>
+          <% else %>
+            <div class="no-events">You have no events to display</div>
           <% end %>
         </div>
       </div>
