@@ -29,8 +29,7 @@ event1 = Event.create!(
   end_date: Time.now + 1.hour,
   location:"the lawn",
   description:"Lorem ipsum dolor sit amet, eu mei elit abhorreant, cibo omnis tempor et eam, at eum meliore aliquando. Ad sea tale explicari urbanitas, id falli eirmod scripta his. Eam et ornatus antiopam, ea ius phaedrum efficiendi mediocritatem, eam ut reque omnes putant. Mei ne essent sententiae, vel prompta suscipit accusamus ad, cu tation cetero quo. Ut volumus nostrum definitiones per, et omnis tacimates elaboraret qui. Ex nec putant propriae oporteat, corrumpit cotidieque pro ne. Virtute molestie te mea, ea novum percipitur vix.",
-  user: user1,
-
+  user: user1
 )
 
 emergency_contact1 = EmergencyContact.create(first_name: 'hey', last_name: 'ho', phone_number: 'heoo')

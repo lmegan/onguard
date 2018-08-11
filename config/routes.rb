@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get '/dashboard', to: 'users#dashboard', as: 'dashboard'
-  resources :events do
+  resources :events, param: :slug do
     member do
       post :deactivate
     end
