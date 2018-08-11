@@ -1,14 +1,15 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :deactivate]
   def index
     @events = Event.where(user: current_user)
   end
 
   def show
-    @event = Event.find(params[:id])
-    @user = @event.user
-  end
 
+    @user = @event.user
+    @event_logs = @event.event_logs
+  end
 
   def new
     @event = Event.new
@@ -32,11 +33,11 @@ class EventsController < ApplicationController
   end
 
   def edit
-    @event = Event.find(params[:id])
+
   end
 
   def update
-    @event = Event.find(params[:id])
+
     if @event.update(event_params)
       redirect_to event_path(@event)
     else
@@ -44,12 +45,21 @@ class EventsController < ApplicationController
     end
   end
 
+  def deactivate
+    @event.update_attributes(active: false)
+    redirect_to event_path(@event)
+end
+
   def destroy
-    @event = Event.find(params[:id])
+
     @event.destroy
   end
 
   private
+
+  def set_event
+    @event = Event.find(params[:id])
+  end
 
   def event_params
     params.require(:event).permit(:name, :start_date, :end_date, :start_time, :end_time, :description, :location, :active, :user_id)
