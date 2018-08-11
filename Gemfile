@@ -16,6 +16,10 @@ gem 'sass-rails'
 gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
+gem 'facebook-messenger'
+gem 'dotenv', '~> 2.1', '>= 2.1.1'
+gem 'api-ai-ruby'
+gem 'figaro'
 
 gem 'omniauth-facebook'
 

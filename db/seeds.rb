@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 # # This file should contain all the record creation needed to seed the database with its default values.
 # # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
@@ -31,7 +30,7 @@ event1 = Event.create!(
   description:"event description",
   user: user1,
   start_time: Time.now,
-  end_time: Time.now - 1.hour
+  end_time: Time.now + 3.hour
 )
 
 emergencycontact1 = EmergencyContact.create(first_name: 'hey', last_name: 'ho', phone_number: 'heoo')
