@@ -1,12 +1,17 @@
 // main page container
 .event-show-container {
 margin: 0 30px;
-
 min-height: calc(100vh - 70px - 70px);
-
+max-width: 96%;
 
 }
 
+.event-line{
+margin-top: 20px;
+border-top: 2px solid #dce0e0;
+margin-left: 25px;
+max-width: 96%
+}
 
 .event-show-name {
 padding-left: 15px;
@@ -18,11 +23,14 @@ font-weight: lighter;
 }
 
 .event-location {
-
+padding-left: 15px;
+margin-bottom: 20px;
 }
 
 .top-event-container{
 margin-left: 20px;
+margin-right: 25px;
+
 }
 
 .event-dates {
@@ -31,6 +39,9 @@ color: #5c696f;
 
 .links-from-event-show-page {
 margin-top: 20px;
+text-align: center;
+margin-bottom: 10px;
+width:
 }
 
 .event-photo {
@@ -39,6 +50,19 @@ width: 300px;
 margin-left: auto;
 margin-right: auto;//
 padding: 0;
+margin-bottom: 30px;
+
+}
+
+.photo-event {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.event-log-title {
+margin-top: 10px;
+padding-left: 25px;
+color: #1d97c1;
 
 }
 
@@ -46,9 +70,11 @@ padding: 0;
 .inbox {
   border: 1px solid #dce0e0;
   padding: 0 20px;
-  margin-top: 40px;
-  max-width: 90%;
+  margin-top: 5px;
+  max-width: 96%;
   margin-left: 24px;
+
+
 }
 .message {
   display: flex;
@@ -82,11 +108,9 @@ padding: 0;
 .message-body {
   padding-left: 20px;
   color: rgba(0,0,0,0.4);
-}
-
-.message-body p {
   margin: 6px 0;
 }
+
 .message-status {
   font-size: 14px;
   text-align: center;
@@ -96,6 +120,7 @@ padding: 0;
 .status {
   color: lightgrey;
   opacity: 0.6;
+
 }
 
 
