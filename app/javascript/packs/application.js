@@ -1,4 +1,5 @@
 import "bootstrap";
+
 // import "../components/video_home_page"
 
 
@@ -23,3 +24,8 @@ window.addEventListener('scroll', () => {
 
 
 });
+
+import flatpickr from "flatpickr";
+
+$('#my-modal').modal()
+

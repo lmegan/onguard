@@ -1,2 +1,165 @@
-<h1>Users#dashboard</h1>
-<p>Find me in app/views/users/dashboard.html.erb</p>
+<div class="dashboard-container">
+  <div class="row dashboard-row">
+    <div class="col-lg-8 col-xs-12">
+      <div class="row">
+        <div class = "col-md-6">
+          <div class="card">
+            <div class="card-description">
+              <h2>Welcome, <%= @user.first_name %><%= " " %><%= @user.last_name %></h2>
+            </div>
+            <img class="card-user" src="https://kitt.lewagon.com/placeholder/users/tgenaitay">
+            <button type="button" id="event-button" data-toggle="modal" data-target=".bd-example-modal-lg">Create a new Event</button>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card2">
+            Google Calendar
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class= "col-md-12">
+          <% if @events.count >= 1  %>
+            <% @events.each do |event| %>
+            <%= link_to event_path(event) do %>
+            <div class="event-card">
+              <div class="col-xs-3">
+                <div class="event-card-name">
+                  <%= event.name %>
+                  <%= event.start_date %>
+                  <%= event.end_date %>
+                </div>
+              </div>
+              <div class="col-xs-6">
+                <div class="event-card-description">
+                  <%= event.description %>
+                </div>
+              </div>
+              <div class="col-xs-3">
+                <div class="event-card-location">
+                  <%= event.location %>
+                  <!-- <img class="dashboard-map" src="hhttps://www.geneva.il.us/ImageRepository/Document?documentID=3697"> -->
+                </div>
+              </div>
+            </div>
+            <% end %>
+            <% end %>
+          <% else %>
+            <div class="no-events">You have no events to display</div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-xs-12">
+      <div class="emergency">
+        <div class="emerg-button">
+          <%= link_to "Notify Contacts", emergency_path, method: :post, :class=> "help" %>
+        </div>
+        <div>
+          <p class="notice">Please note, if you are in serious danger please also contact your local authorities.</p>
+        </div>
+        <div>
+          <p class="notice-info">Clicking the link above will notify the emergency contacts you specified for your current event. They will receive a Whatsapp message that contains a link directing them to a page with your event details and event log.</p>
+        </div>
+      </div>
+      <div class="emergency-contact-list">
+        <h5>Your current emergency contacts:</h5>
+        <ul>
+          <% @emergency_contacts.each do |emergency_contact| %>
+          <li><%= emergency_contact.first_name %>
+          <%= emergency_contact.last_name %>
+          <%= - emergency_contact.phone_number %></li>
+        </ul>
+        <% end %>
+        <div>
+        <button type="button" class="contact-button" data-toggle="modal" data-target=".bd-example-modal-sm">Add an emergency contact</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add an Event</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for @event do |f| %>
+        <%= f.input :name %>
+        <label>Startd Date</label>
+        <input name="start_date" class="flatpickr flatpickr-input" id= "start-day" data-dateFormat="l, F j, Y">
+        <input name="start_time" class="flatpickr" id="start-time">
+        <input name="end_date" class="flatpickr flatpickr-input" id= "end-day" data-dateFormat="l, F j, Y">
+        <input name="end_time" class="flatpickr" id= "end-time" data-enabletime="true" data-nocalendar="true" value="09:00">
+        <%= f.input :description %>
+        <%= f.input :location %>
+        <%= f.input :active, :as => :hidden %>
+        <%= f.submit "Add Event", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add an emergency contact</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for @emergency_contact do |f| %>
+          <%= f.input :first_name %>
+          <%= f.input :last_name %>
+          <%= f.input :phone_number %>
+          <%= f.submit "Add Contact", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script type="text/javascript">
+const startDate = document.querySelector("#start-day");
+flatpickr(startDate, {
+  dateFormat: "Y-m-d",
+});  // flatpickr
+
+const endDate = document.querySelector("#end-day");
+flatpickr(endDate, {
+  dateFormat: "Y-m-d",
+});  // flatpickr
+  const startTime = document.querySelector("#start-time");
+flatpickr(startTime, {
+    enableTime: true,
+    noCalendar: true,
+    static: true
+});  // flatpickr
+  const endTime = document.querySelector("#end-time");
+flatpickr(endTime, {
+    enableTime: true,
+    noCalendar: true,
+    static: true
+});  // flatpickr
+</script>
