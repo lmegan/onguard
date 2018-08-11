@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_event, only: [:show, :edit, :update, :destroy, :deactivate]
+
   def index
     @events = Event.where(user: current_user)
   end
@@ -57,8 +58,9 @@ end
 
   private
 
+
   def set_event
-    @event = Event.find(params[:id])
+    @event = Event.find(params[:slug])
   end
 
   def event_params
