@@ -26,7 +26,8 @@
      <div class="col-sm-4" >
       <div class="links-from-event-show-page">
 
-        <span class="btn-standard"><%= link_to "Edit Event", edit_event_path(@event) %></span>
+        <span class="btn-standard">Edit Event<% render 'shared/edit_event_form' %></span>
+
 
         <span class="btn-standard"><%= link_to "Delete event", event_path(@event),
             method: :delete,
@@ -63,7 +64,6 @@
         </li>
         <% end %>
       </ul>
-
     </div>
   </div>
 </div>
