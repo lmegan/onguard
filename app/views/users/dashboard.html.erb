@@ -95,15 +95,17 @@
         </button>
       </div>
       <div class="modal-body">
-        <%= simple_form_for @event do |f| %>
-        <%= f.input :name %>
-        <%= f.input :start_time, as: :string, label: 'Start time (HH:MM)' %>
-        <%= f.input :end_time, as: :string, label: 'End time (HH:MM)'  %>
-        <%= f.input :description %>
-        <%= f.input :location %>
-        <%= f.input :active, :as => :hidden %>
-        <%= f.submit "Add Event", class: "btn btn-primary" %>
-        <% end %>
+     <!--    <%#= simple_form_for @event do |f| %>
+        <%#= f.input :name %>
+        <%#= f.input :start_time, as: :string, label: 'Start time (HH:MM)' %>
+        <%#= f.input :end_time, as: :string, label: 'End time (HH:MM)'  %>
+        <%#= f.input :start_date, as: :string, label: 'Start date (MM/DD/YYYY)'%>
+       <%#= f.input :end_date, as: :string, label: 'End date (MM/DD/YYYY)' %>
+        <%#= f.input :description %>
+        <%#= f.input :location %>
+        <%#= f.input :active, :as => :hidden %>
+        <%#= f.submit "Add Event", class: "btn btn-primary" %>
+        <%# end %> -->
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
