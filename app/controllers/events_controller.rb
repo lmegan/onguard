@@ -64,7 +64,7 @@ end
 
 
   def set_event
-    @event = Event.find(params[:slug])
+    @event = Event.find_by_slug(params[:slug])
   end
 
   def event_params
