@@ -1,1 +1,204 @@
-// Specific CSS for your home-page
+body {
+  background-color: white;
+}
+
+
+
+
+.head-home-container {
+  margin-top: 50px;
+}
+
+.iphone-head-home {
+  width: 380px;
+  float: right;
+
+}
+
+.phones {
+  background-image: url(https://www.android.com/static/2016/img/devices/phones/pixel-2/front-black-xl_1x.png);
+  background-repeat: no-repeat;
+}
+
+.head-home-content {
+  margin-top: 100px;
+}
+
+.head-home-content h1 {
+  font-size: 50px;
+  text-align: center;
+}
+
+.head-home-content h3 {
+  color: grey;
+  text-align: center;
+}
+
+.butn-fb-home h4 {
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
+  margin-right: 40px;
+  margin-left: 40px;
+  background-color: rgb(17, 147, 209);
+  color: white;
+  border-radius: 5px;
+  box-shadow: 0 1px 2px rgba(38,38,38,.15);
+}
+
+.head-home-content p {
+  color: lightgrey;
+  font-size: 15px;
+  text-align: center;
+}
+
+.wraper-one {
+  margin-top: 100px;
+  background-color: rgb(0, 125, 210);
+  background-size: 100%;
+  width: 100vw;
+  color: white;
+}
+
+.wraper-one h3, .wraper-one p {
+  margin-left: 100px;
+}
+
+.wraper-one h3 {
+  margin-top: 80px;
+  font-size: 40px;
+}
+
+.bot-img-home {
+  width: 180px;
+  float: right;
+  margin-right: 204px;
+}
+
+.wraper-two {
+  margin-top: 100px;
+  width: 100vw;
+}
+
+.wraper-two h3, .wraper-two p, .wraper-two a {
+  margin-left: 100px;
+}
+
+.wraper-two h3 {
+  font-size: 40px;
+}
+
+.wraper-two p {
+  color: rgb(160, 167, 174);
+  margin-right: 150px;
+  margin-top: 30px;
+  font-weight: lighter;
+}
+
+.wraper-two h6 {
+  margin-top: 170px;
+  color: white;
+}
+
+.next-row {
+
+}
+
+.vid {
+  position: sticky;
+  top: 70px;
+}
+
+.wraper-two section {
+  margin: 5px 0;
+  padding: 150px 0;
+}
+
+
+
+@media (max-width: 768px) {
+  .iphone-head-home {
+  float: none;
+  width: 100%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .head-home-content h1 {
+  font-size: 48px;
+}
+}
+
+@media (max-width: 991px) {
+  .head-home-content h1 {
+  font-size: 38px;
+}
+}
+
+@media (max-width: 991px) {
+  .head-home-content h3 {
+  font-size: 25px;
+}
+}
+
+@media (max-width: 991px) {
+  .head-home-content h4 {
+  font-size: 15px;
+}
+}
+
+@media (max-width: 767px) {
+  .head-home-content {
+  margin-top: 0px;
+}
+}
+
+@media (max-width: 767px) {
+  .butn-fb-home h4 {
+  margin-right: 30%;
+  margin-left: 30%;
+}
+}
+
+@media (max-width: 636px) {
+  .butn-fb-home h4 {
+  margin-right: 20%;
+  margin-left: 20%;
+}
+}
+
+@media (max-width: 434px) {
+  .butn-fb-home h4 {
+  margin-right: 10%;
+  margin-left: 10%;
+}
+}
+
+@media (max-width: 991px) {
+ .wraper-one p {
+  margin-bottom: 50px;
+ }
+}
+
+@media (max-width: 767px) {
+  .wraper-one h3, .wraper-one p {
+  margin-left: 30px;
+}
+}
+
+@media (max-width: 767px) {
+  .wraper-two h3, .wraper-two p, .wraper-two a {
+  margin-left: 30px;
+}
+}
+
+
+
+
+
+
+
+
+
