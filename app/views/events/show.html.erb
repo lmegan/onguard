@@ -7,13 +7,13 @@
             <% elsif @event.active == false %>
             <p>Status: Inactive</p>
             <% end %> </span></div>
-            <div class="event-location"> Location:  <%= @event.location %></div>
       <div class="col-xs-12 col-sm-8">
         <div class="event-details-left">
           <div class="event-show-description"><p><%= @event.description %></p></div>
           <div class="event-dates">
+            <p>Location:  <%= @event.location %></p>
             <p>Event Starts: <%= @event.start_date %></p>
-            <p>Event  Ends: <%= @event.end_date %></p>
+            <p>Event Ends: <%= @event.end_date %></p>
           </div>
         </div>
       </div>
@@ -23,9 +23,11 @@
         </div>
     </div>
   <div class="row">
-   <!--   <div class="col-sm-4" > -->
+     <div class="col-sm-4" >
       <div class="links-from-event-show-page">
+
         <span class="btn-standard"><%= link_to "Edit Event", edit_event_path(@event) %></span>
+
         <span class="btn-standard"><%= link_to "Delete event", event_path(@event),
             method: :delete,
             data: { confirm: "Are you sure?" } %></span>
@@ -34,7 +36,7 @@
                 <%= link_to "Deactivate Event", deactivate_event_path(@event), method: :post %>
                   <% end %>
               </span>
- <!--      </div> -->
+      </div>
      </div>
     </div>
   </div>
