@@ -18,6 +18,8 @@ gem 'uglifier'
 gem 'webpacker'
 gem 'twilio-ruby'
 gem 'omniauth-facebook'
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'datetime_picker_input'
 
 group :development do
   gem 'web-console', '>= 3.3.0'

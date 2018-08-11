@@ -19,6 +19,10 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+    @start_date = DateTime.parse("#{params[:start_date]} #{params[:start_time]}")
+    @end_date = DateTime.parse("#{params[:end_date]} #{params[:end_time]}")
+    @event.start_date = @start_date
+    @event.end_date = @end_date
     @user = current_user
     if DateTime.now >= @event.start_date && DateTime.now <= @event.end_date
       @event.active = true
@@ -64,6 +68,6 @@ end
   end
 
   def event_params
-    params.require(:event).permit(:name, :start_date, :end_date, :start_time, :end_time, :description, :location, :active, :user_id)
+    params.require(:event).permit(:name, :description, :location, :active, :user_id)
   end
 end

@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 2018_08_11_024135) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
-    t.index ["slug"], name: "index_events_on_slug"
+    t.index ["slug"], name: "index_events_on_slug", unique: true
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
