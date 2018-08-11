@@ -95,17 +95,18 @@
         </button>
       </div>
       <div class="modal-body">
-     <!--    <%#= simple_form_for @event do |f| %>
-        <%#= f.input :name %>
-        <%#= f.input :start_time, as: :string, label: 'Start time (HH:MM)' %>
-        <%#= f.input :end_time, as: :string, label: 'End time (HH:MM)'  %>
-        <%#= f.input :start_date, as: :string, label: 'Start date (MM/DD/YYYY)'%>
-       <%#= f.input :end_date, as: :string, label: 'End date (MM/DD/YYYY)' %>
-        <%#= f.input :description %>
-        <%#= f.input :location %>
-        <%#= f.input :active, :as => :hidden %>
-        <%#= f.submit "Add Event", class: "btn btn-primary" %>
-        <%# end %> -->
+        <%= simple_form_for @event do |f| %>
+        <%= f.input :name %>
+        <label>Startd Date</label>
+        <input name="start_date" class="flatpickr flatpickr-input" id= "start-day" data-dateFormat="l, F j, Y">
+        <input name="start_time" class="flatpickr" id="start-time">
+        <input name="end_date" class="flatpickr flatpickr-input" id= "end-day" data-dateFormat="l, F j, Y">
+        <input name="end_time" class="flatpickr" id= "end-time" data-enabletime="true" data-nocalendar="true" value="09:00">
+        <%= f.input :description %>
+        <%= f.input :location %>
+        <%= f.input :active, :as => :hidden %>
+        <%= f.submit "Add Event", class: "btn btn-primary" %>
+        <% end %>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -137,3 +138,28 @@
     </div>
   </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script type="text/javascript">
+const startDate = document.querySelector("#start-day");
+flatpickr(startDate, {
+  dateFormat: "Y-m-d",
+});  // flatpickr
+
+const endDate = document.querySelector("#end-day");
+flatpickr(endDate, {
+  dateFormat: "Y-m-d",
+});  // flatpickr
+  const startTime = document.querySelector("#start-time");
+flatpickr(startTime, {
+    enableTime: true,
+    noCalendar: true,
+    static: true
+});  // flatpickr
+  const endTime = document.querySelector("#end-time");
+flatpickr(endTime, {
+    enableTime: true,
+    noCalendar: true,
+    static: true
+});  // flatpickr
+</script>
