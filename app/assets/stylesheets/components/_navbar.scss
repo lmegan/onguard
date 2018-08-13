@@ -12,7 +12,8 @@
 
 /* Logo */
 .navbar-wagon-brand img {
-  height: 50px;
+  width: 60px;
+  margin-left: 10vw;
 }
 
 /* User Avatar */
@@ -74,4 +75,11 @@
   transform: rotate(45deg);
   border-left: 1px solid #E6E6E6;
   border-top: 1px solid #E6E6E6;
+}
+
+@media (max-width: 434px) {
+  .navbar-wagon-brand img {
+  width: 50px;
+  margin-left: 0vw;
+}
 }
