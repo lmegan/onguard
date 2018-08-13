@@ -1,4 +1,15 @@
 // main page container
+.banner-event {
+  color: white;
+  text-align: center;
+  height: 30vh;
+  /* if you have a 70px navbar => height: calc(100vh - 70px); */
+  background-size: cover !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .event-show-container {
 margin: 0 30px;
 min-height: calc(100vh - 70px - 70px);
@@ -14,9 +25,10 @@ max-width: 96%
 }
 
 .event-details-box {
- border: 1px solid #dce0e0;
- margin: 20px 15px 15px 23px;
- border-radius: 10px 10px;
+  border: 1px solid #dce0e0;
+  margin: -100px 15px 15px 23px;
+  border-radius: 10px 10px;
+  background-color: white;
 }
 .event-show-name {
 padding-left: 15px;
