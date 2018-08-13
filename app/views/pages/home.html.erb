@@ -8,7 +8,9 @@
         <h1>Send messages to <br> your bot when <br> you go out</h1>
         <h3>Alert your contacts if needed</h3>
         <div class="butn-fb-home">
-        <h4>Sign-up with Facebook</h4>
+          <%= link_to user_facebook_omniauth_authorize_path, :class => "sign-up-home" do %>
+          <h4>Sign-up with Facebook</h4>
+          <%end %>
         </div>
         <p>We'll never post without your approval</p>
       </div>
@@ -62,7 +64,9 @@
         </section>
       </div>
       <div class="hidden-sm hidden-xs col-md-4 col-lg-4 vid">
-        <%= video_tag "bot-full-on.mp4", :size => "280x530",:id => "vidhome", :autoplay => true, :muted => true %>
+        <video id="vidhome" width="280" height="530"></video>
+
+
       </div>
     </div>
   </div>
@@ -71,20 +75,7 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<%# video_tag "bot-full-on.mp4", :size => "280x530",:id => "vidhome", :autoplay => true, :muted => true %>
 
 
 
