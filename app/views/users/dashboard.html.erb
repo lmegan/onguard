@@ -16,7 +16,7 @@
               <h2>Welcome, <%= @user.first_name %><%= " " %><%= @user.last_name %></h2>
             </div>
             <img class="card-user" src="https://kitt.lewagon.com/placeholder/users/tgenaitay">
-            <button type="button" id="event-button" data-toggle="modal" data-target=".bd-example-modal-lg">Create a new Event</button>
+            <button type="button" id="event-button" data-toggle="modal" data-target=".bd-example-modal-lg"><h4>Create a new Event</h4></button>
           </div>
         </div>
         <div class="col-md-6">
@@ -28,8 +28,8 @@
       <div class="row">
         <div class= "col-md-12">
           <div class="event-cards">
-          <div class="event-title">Your events</div>
           <% if @events.count >= 1  %>
+          <div class="event-title">Your events</div>
             <% @events.each do |event| %>
             <%= link_to event_path(event) do %>
             <div class="event-card">
@@ -79,8 +79,8 @@
       </div>
       <div class="dashboard-messenger">
         <h4>Chat via Facebook Messenger</h4>
-        <p>Don't forget! During your event you can add information to your event log by chatting and uploading via Facebook messenger.</p>
-        <i class="fab fa-facebook-messenger"></i>
+        <div class="dashboard-messenger-desc"><p>Don't forget! During your event you can add information to your event log by chatting and uploading via Facebook messenger.</p>
+        <img class="img" src="https://en.facebookbrand.com/wp-content/uploads/2016/09/messenger_icon2.png"></div>
       </div>
       <div class="emergency-contact-list" style="overflow-y: scroll">
         <div class="emergency-contacts-title">
