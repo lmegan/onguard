@@ -7,7 +7,7 @@ Bundler.require(*Rails.groups)
 
 module Onguard
   class Application < Rails::Application
-  config.web_console.whiny_requests = false
+  # config.web_console.whiny_requests = false
     config.generators do |generate|
           generate.assets false
           generate.helper false
