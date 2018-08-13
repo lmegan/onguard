@@ -14,13 +14,16 @@
               <%= simple_form_for @event, url: event_path, method: :patch do |f| %>
               <div class="form-input">
                 <%= f.input :name %>
-                 <div class="col-xs-6"><%= f.input :start_date %></div>
-                 <div class="col-xs-6"><%= f.input :end_date %></div>
-                  <input name="start_date" class="flatpickr flatpickr-input" id= "start-day" data-dateFormat="l, F j, Y">
-                 <input name="start_time" class="flatpickr" id="start-time">
+                  <label>Start date</label>
+                  <input name="start_date" class="flatpickr flatpickr-input form-control" id= "start-day" data-dateFormat="l, F j, Y">
+
+                 <input name="start_time" class="flatpickr form-control" id="start-time">
+
+                 <input name="end_date" class="flatpickr flatpickr-input form-control" id= "end-day" data-dateFormat="l, F j, Y">
+
+                 <input name="end_time" class="flatpickr form-control" id="end-time">
                 <%= f.input :description %>
-                <%= f.input :location %>
-                <%= render 'layouts/autocomplete'%>
+                <%= render 'layouts/autocomplete' , f: f %>
                 <%= f.input :active, as: :boolean %>
               </div>
               <div class="col-xs-12"><%= f.submit "Update Event", class: "btn-standard" %></div>
