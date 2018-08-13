@@ -1,15 +1,6 @@
 <div class="pac-card" id="pac-card">
-      <div>
-        <div id="type-selector" class="pac-controls">
-          <input type="radio" name="type" id="changetype-all" checked="checked">
-          <label for="changetype-all">All</label>
-        </div>
 
-      </div>
-      <div id="pac-container">
          <%= f.input :location, placeholder: "Enter a location" %>
-
-      </div>
     </div>
     <div id="map"></div>
     <div id="infowindow-content">
@@ -99,16 +90,6 @@
           });
         }
 
-        // setupClickListener('changetype-all', []);
-        // setupClickListener('changetype-address', ['address']);
-        // setupClickListener('changetype-establishment', ['establishment']);
-        // setupClickListener('changetype-geocode', ['geocode']);
-
-        // document.getElementById('use-strict-bounds')
-        //     .addEventListener('click', function() {
-        //       console.log('Checkbox clicked! New state=' + this.checked);
-        //       autocomplete.setOptions({strictBounds: this.checked});
-            // });
       }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_BROWSER_KEY'] %>&libraries=places&callback=initMap"
