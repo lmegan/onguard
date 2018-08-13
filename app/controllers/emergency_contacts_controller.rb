@@ -44,7 +44,7 @@ class EmergencyContactsController < ApplicationController
   def destroy
     @emergency_contact = EmergencyContact.find(params[:id])
     if @emergency_contact.destroy
-      redirect_to emergency_contacts_path, notice: 'Successfully deleted a new emergency contact.'
+      redirect_to dashboard_path, notice: 'Successfully deleted a new emergency contact.'
     end
   end
 

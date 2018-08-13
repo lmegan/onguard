@@ -1,3 +1,4 @@
+<div class="dashboard">
 <div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('https://kitt.lewagon.com/placeholder/cities/berlin');">
   <div class="banner-content">
     <h1>Dashboard</h1>
@@ -15,7 +16,9 @@
             <div class="card-description">
               <h2>Welcome, <%= @user.first_name %><%= " " %><%= @user.last_name %></h2>
             </div>
-            <img class="card-user" src="https://kitt.lewagon.com/placeholder/users/tgenaitay">
+            <!-- <img class="card-user" src="https://kitt.lewagon.com/placeholder/users/tgenaitay"> -->
+            <% avatar_url = current_user.facebook_picture_url || "http://placehold.it/250x250" %>
+            <%= image_tag avatar_url, class: "card-user" %>
             <button type="button" id="event-button" data-toggle="modal" data-target=".bd-example-modal-lg"><h4>Create a new Event</h4></button>
           </div>
         </div>
@@ -25,6 +28,7 @@
           </div>
         </div>
       </div>
+
       <div class="row">
         <div class= "col-md-12">
           <div class="event-cards">
@@ -33,7 +37,7 @@
             <% @events.each do |event| %>
             <%= link_to event_path(event) do %>
             <div class="event-card">
-              <div class="col-xs-3" id="ecn">
+              <div class="col-xs-2" id="ecn">
                 <div class="event-card-name">
                   <%= event.name %>
                 </div>
@@ -49,7 +53,12 @@
                   <%= event.description %>
                 </div>
               </div>
-              <div class="col-xs-3">
+              <!-- <div class="col-xs-2">
+                <div class="event-card-emerg">
+                  <%= event.emergency_contacts %>
+                </div>
+              </div> -->
+              <div class="col-xs-2">
                 <div class="event-card-location">
                   <%= event.location %>
                   <img class="avatar-large" src="https://www.london.ca/Maps/PublishingImages/new-citymap-forks.png">
@@ -95,6 +104,11 @@
           <%= emergency_contact.last_name %>
           <i class="fas fa-phone"></i>
           <%= emergency_contact.phone_number %>
+          <%= link_to emergency_contact_path(emergency_contact),
+              method: :delete,
+              data: { confirm: "Are you sure?" } do %>
+              <i class="far fa-trash-alt"></i>
+              <% end %>
         </div>
         <% end %>
         <div>
@@ -105,6 +119,8 @@
     </div>
   </div>
   </div>
+</div>
+</div>
 </div>
 
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -121,11 +137,21 @@
         <%= f.input :name %>
         <label>Start Date</label>
         <input name="start_date" class="flatpickr flatpickr-input" id= "start-day" data-dateFormat="l, F j, Y">
+        <label>Start Time</label>
         <input name="start_time" class="flatpickr" id="start-time">
+        <label>End Date</label>
         <input name="end_date" class="flatpickr flatpickr-input" id= "end-day" data-dateFormat="l, F j, Y">
+        <label>End Time</label>
         <input name="end_time" class="flatpickr" id= "end-time" data-enabletime="true" data-nocalendar="true" value="09:00">
         <%= f.input :description %>
-        <%= f.input :location %>
+        <%= render 'layouts/autocomplete' , f: f %>
+
+        <%= f.association :emergency_contacts, as: :check_boxes, collection: current_user.emergency_contacts.order(:first_name), value_method: :first_name, label_method: :first_name  %>
+
+        <%#= f.simple_fields_for :emergency_contacts do |p| %>
+          <%#= p.collection_check_boxes :emergency_contacts, collection: current_user.emergency_contacts.order(:first_name) %>
+        <%# end %>
+
         <%= f.input :active, :as => :hidden %>
         <%= f.submit "Add Event", class: "btn btn-primary" %>
         <% end %>
