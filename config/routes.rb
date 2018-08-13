@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   root to: 'pages#home'
 
-  mount Facebook::Messenger::Server, at: "bot"
+  # mount Facebook::Messenger::Server, at: "bot"
 
   patch "complete_profile", to: "users#complete_profile", as: "complete_profile"
 
