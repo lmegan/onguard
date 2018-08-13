@@ -7,8 +7,8 @@
 
       </div>
       <div id="pac-container">
-        <input id="pac-input" type="text"
-            placeholder="Enter a location">
+         <%= f.input :location, placeholder: "Enter a location" %>
+
       </div>
     </div>
     <div id="map"></div>
@@ -29,7 +29,7 @@
           zoom: 13
         });
         var card = document.getElementById('pac-card');
-        var input = document.getElementById('pac-input');
+        var input = document.getElementById('event_location');
         var types = document.getElementById('type-selector');
         var strictBounds = document.getElementById('strict-bounds-selector');
 
@@ -99,17 +99,17 @@
           });
         }
 
-        setupClickListener('changetype-all', []);
-        setupClickListener('changetype-address', ['address']);
-        setupClickListener('changetype-establishment', ['establishment']);
-        setupClickListener('changetype-geocode', ['geocode']);
+        // setupClickListener('changetype-all', []);
+        // setupClickListener('changetype-address', ['address']);
+        // setupClickListener('changetype-establishment', ['establishment']);
+        // setupClickListener('changetype-geocode', ['geocode']);
 
-        document.getElementById('use-strict-bounds')
-            .addEventListener('click', function() {
-              console.log('Checkbox clicked! New state=' + this.checked);
-              autocomplete.setOptions({strictBounds: this.checked});
-            });
+        // document.getElementById('use-strict-bounds')
+        //     .addEventListener('click', function() {
+        //       console.log('Checkbox clicked! New state=' + this.checked);
+        //       autocomplete.setOptions({strictBounds: this.checked});
+            // });
       }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key={ENV['GOOGLE_API_BROWSER_KEY']}&libraries=places&callback=initMap"
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_BROWSER_KEY'] %>&libraries=places&callback=initMap"
         async defer></script>
