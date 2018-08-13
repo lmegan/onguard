@@ -1,3 +1,11 @@
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('https://kitt.lewagon.com/placeholder/cities/berlin');">
+  <div class="banner-content">
+    <h1>Dashboard</h1>
+    <p>Welcome back</p>
+  </div>
+</div>
+
+
 <div class="dashboard-container">
   <div class="row dashboard-row">
     <div class="col-lg-8 col-xs-12">
@@ -19,15 +27,21 @@
       </div>
       <div class="row">
         <div class= "col-md-12">
+          <div class="event-cards">
+          <div class="event-title">Your events</div>
           <% if @events.count >= 1  %>
             <% @events.each do |event| %>
             <%= link_to event_path(event) do %>
             <div class="event-card">
-              <div class="col-xs-3">
+              <div class="col-xs-3" id="ecn">
                 <div class="event-card-name">
                   <%= event.name %>
-                  <%= event.start_date %>
-                  <%= event.end_date %>
+                </div>
+                <div class="event-card-start-time">
+                  <%= event.start_date.strftime("%-d/%-m/%y: %k:00") %>
+                </div>
+                <div class="event-card-end-time">
+                  <%= event.end_date.strftime("%-d/%-m/%y: %k:00") %>
                 </div>
               </div>
               <div class="col-xs-6">
@@ -38,7 +52,7 @@
               <div class="col-xs-3">
                 <div class="event-card-location">
                   <%= event.location %>
-                  <!-- <img class="dashboard-map" src="hhttps://www.geneva.il.us/ImageRepository/Document?documentID=3697"> -->
+                  <img class="avatar-large" src="https://www.london.ca/Maps/PublishingImages/new-citymap-forks.png">
                 </div>
               </div>
             </div>
@@ -48,6 +62,7 @@
             <div class="no-events">You have no events to display</div>
           <% end %>
         </div>
+      </div>
       </div>
     </div>
     <div class="col-lg-4 col-xs-12">
@@ -62,28 +77,35 @@
           <p class="notice-info">Clicking the link above will notify the emergency contacts you specified for your current event. They will receive a Whatsapp message that contains a link directing them to a page with your event details and event log.</p>
         </div>
       </div>
-      <div class="emergency-contact-list">
-        <h5>Your current emergency contacts:</h5>
-        <ul>
+      <div class="dashboard-messenger">
+        <h4>Chat via Facebook Messenger</h4>
+        <p>Don't forget! During your event you can add information to your event log by chatting and uploading via Facebook messenger.</p>
+        <i class="fab fa-facebook-messenger"></i>
+      </div>
+      <div class="emergency-contact-list" style="overflow-y: scroll">
+        <div class="emergency-contacts-title">
+        <h5>Emergency contacts:</h5>
+        <button type="button" class="contact-button" data-toggle="modal" data-target=".bd-example-modal-sm">+</button>
+        </div>
+        <div style="overflow-y: scroll">
+        <div>
           <% @emergency_contacts.each do |emergency_contact| %>
-          <li><%= emergency_contact.first_name %>
+          <div class="row" id="emerg-contact-row">
+          <%= emergency_contact.first_name %>
           <%= emergency_contact.last_name %>
-          <%= - emergency_contact.phone_number %></li>
-        </ul>
+          <i class="fas fa-phone"></i>
+          <%= emergency_contact.phone_number %>
+        </div>
         <% end %>
         <div>
-        <button type="button" class="contact-button" data-toggle="modal" data-target=".bd-example-modal-sm">Add an emergency contact</button>
+        <div>
+        <!-- <button type="button" class="contact-button" data-toggle="modal" data-target=".bd-example-modal-sm">Add an emergency contact</button> -->
         </div>
       </div>
     </div>
   </div>
+  </div>
 </div>
-
-
-
-
-
-
 
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
@@ -97,7 +119,7 @@
       <div class="modal-body">
         <%= simple_form_for @event do |f| %>
         <%= f.input :name %>
-        <label>Startd Date</label>
+        <label>Start Date</label>
         <input name="start_date" class="flatpickr flatpickr-input" id= "start-day" data-dateFormat="l, F j, Y">
         <input name="start_time" class="flatpickr" id="start-time">
         <input name="end_date" class="flatpickr flatpickr-input" id= "end-day" data-dateFormat="l, F j, Y">

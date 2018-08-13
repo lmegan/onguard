@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [ :edit, :update, :destroy, :deactivate]
   before_action :set_event, only: [:show, :edit, :update, :destroy, :deactivate]
 
   def index
@@ -42,7 +42,6 @@ class EventsController < ApplicationController
   end
 
   def update
-
     if @event.update(event_params)
       redirect_to event_path(@event)
     else
@@ -56,12 +55,10 @@ class EventsController < ApplicationController
 end
 
   def destroy
-
     @event.destroy
   end
 
   private
-
 
   def set_event
     @event = Event.find_by_slug(params[:slug])

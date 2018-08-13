@@ -12,6 +12,7 @@ devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_call
 
   # mount Facebook::Messenger::Server, at: "bot"
 
+
   patch "complete_profile", to: "users#complete_profile", as: "complete_profile"
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
