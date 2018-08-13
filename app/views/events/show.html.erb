@@ -20,16 +20,8 @@
                 <p>Event Starts: <%= @event.start_date %></p>
                 <p>Event Ends: <%= @event.end_date %></p>
               </div>
-            </div>
-          </div>
-         <div class="col-sm-4 photo-event" >
-        <div>
-          <img class="event-photo" src="https://picsum.photos/200/300/?random">
-        </div>
-            </div>
-
-               <div class="col-sm-6" >
-                <div class="links-from-event-show-page">
+                  <div class="col-sm-6" >
+            <div class="links-from-event-show-page">
 
                   <button type="button" class="btn btn-standard" data-toggle="modal" data-target="#myModal">Update Event</button>
 
@@ -42,38 +34,44 @@
                 <%= link_to "Deactivate Event", deactivate_event_path(@event), method: :post %>
                 <% end %>
               </button>
+            </div>
           </div>
+
+            </div>
+            </div>
+          <div class="col-sm-4 photo-event" >
+          <img class="event-photo" src="https://picsum.photos/200/400/?random">
+        </div>
+
+
+        </div>
       </div>
-
+    </div>
   </div>
-</div>
-</div>
 
-<div class="event-line">
+  <div class="event-line"></div>
+    <p class="event-log-title">Event log</p>
+    <ul class="inbox">
+      <% @event_logs.each do |event_log| %>
+      <li class="message">
+        <div class="message-date">
+          <p><strong>Date Received</strong></p>
+          <p><%= event_log.date_time %></p>
+        </div>
+        <div class="message-body">
+          <p><%= event_log.description %></p>
+        </div>
+        <div class="message-status">
+          <p class="message-name">Attachment</p>
+          <p class="price"><% if event_log.attachment = !nil %>
+            <%= "yes"%>
+            <% end  %>
+          </p>
+        </div>
+      </li>
+      <% end %>
+    </ul>
 </div>
-<p class="event-log-title">Event log</p>
-<ul class="inbox">
-  <% @event_logs.each do |event_log| %>
-  <li class="message">
-    <div class="message-date">
-      <p><strong>Date Received</strong></p>
-      <p><%= event_log.date_time %></p>
-    </div>
-    <div class="message-body">
-      <p><%= event_log.description %></p>
-    </div>
-    <div class="message-status">
-      <p class="message-name">Attachment</p>
-      <p class="price"><% if event_log.attachment = !nil %>
-        <%= "yes"%>
-        <% end  %>
-      </p>
-    </div>
-  </li>
-  <% end %>
-</ul>
-</div>
-
 
 
 
