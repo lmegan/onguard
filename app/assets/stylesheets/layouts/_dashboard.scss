@@ -1,16 +1,19 @@
 .banner {
   color: white;
-  text-align: center;
+  // text-align: center;
   height: 40vh;
-  /* if you have a 70px navbar => height: calc(100vh - 70px); */
+  /* ifžyou have a 70px navbar => height: calc(100vh - 70px); */
   background-size: cover !important;
   display: flex;
   align-items: center;
-  justify-content: center;
+  // justify-content: center;
+}
+.banner-content {
+  margin-left: 130px;
 }
 .banner h1 {
   font-size: 50px;
-  font-weight: bold;
+  // font-weight: bold;
   text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
   letter-spacing: 2px;
 }

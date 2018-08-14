@@ -1,5 +1,5 @@
 <div class="dashboard">
-<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('https://kitt.lewagon.com/placeholder/cities/berlin');">
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('https://snazzy-maps-cdn.azureedge.net/assets/7-icy-blue.png?v=20170626063457');">
   <div class="banner-content">
     <h1>Dashboard</h1>
     <p>Welcome back</p>
@@ -53,13 +53,15 @@
                   <%= event.description %>
                 </div>
               </div>
-              <!-- <div class="col-xs-2">
+              <div class="col-xs-2">
                 <div class="event-card-emerg">
-                  <%= event.emergency_contacts %>
+                  <p>Contacts to notify:</p>
+                  <%= event.emergency_contacts.pluck(:first_name).join(", ") %>
                 </div>
-              </div> -->
+              </div>
               <div class="col-xs-2">
                 <div class="event-card-location">
+                  <p>Location:</p>
                   <%= event.location %>
                   <img class="avatar-large" src="https://www.london.ca/Maps/PublishingImages/new-citymap-forks.png">
                 </div>
@@ -147,11 +149,6 @@
         <%= render 'layouts/autocomplete' , f: f %>
 
         <%= f.association :emergency_contacts, as: :check_boxes, collection: current_user.emergency_contacts.order(:first_name), value_method: :first_name, label_method: :first_name  %>
-
-        <%#= f.simple_fields_for :emergency_contacts do |p| %>
-          <%#= p.collection_check_boxes :emergency_contacts, collection: current_user.emergency_contacts.order(:first_name) %>
-        <%# end %>
-
         <%= f.input :active, :as => :hidden %>
         <%= f.submit "Add Event", class: "btn btn-primary" %>
         <% end %>
