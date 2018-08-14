@@ -235,10 +235,12 @@
 .event-card-start-time {
   font-size: 15px;
   font-weight: lighter;
+  display: flex;
 }
 .event-card-end-time {
   font-size: 15px;
   font-weight: lighter;
+  display: flex;
 }
 .event-card-description {
   font-size: 15px;
@@ -250,7 +252,11 @@
 .event-card-location {
   margin-left: 20px;
   margin-right: 20px;
-  font-size: 20px;
+  font-size: 15px;
+}
+.event-card-emerg {
+  display: flex;
+  justify-content: center;
 }
 .dashboard-map {
   position: absolute;

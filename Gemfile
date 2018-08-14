@@ -24,6 +24,7 @@ gem 'figaro'
 
 
 gem 'twilio-ruby'
+gem 'google-api-client'
 
 gem 'omniauth-facebook'
 gem 'momentjs-rails', '>= 2.9.0'

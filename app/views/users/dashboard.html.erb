@@ -6,6 +6,12 @@
   </div>
 </div>
 
+<div> <img src="https://maps.googleapis.com/maps/api/staticmap?center=Brooklyn+Bridge,New+York,NY&zoom=13&size=600x300&maptype=roadmap
+&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318
+&markers=color:red%7Clabel:C%7C40.718217,-73.998284
+&key=AIzaSyDAC0TPT8VTsQ64MxkQT8gz9O9bGOfLUfs"> </div>
+
+<div> <img src="https://maps.googleapis.com/maps/api/staticmap?center=CGI.escape"#{@event.location}"&zoom=13&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C#{@event.latitude},#{@event.longitude}&key=AIzaSyDAC0TPT8VTsQ64MxkQT8gz9O9bGOfLUfs"> </div>
 
 <div class="dashboard-container">
   <div class="row dashboard-row">
@@ -37,33 +43,41 @@
             <% @events.each do |event| %>
             <%= link_to event_path(event) do %>
             <div class="event-card">
-              <div class="col-xs-2" id="ecn">
-                <div class="event-card-name">
-                  <%= event.name %>
+              <div class="col-xs-12 col-lg-8" id="ecn">
+                <div class="row">
+                  <div class="col-xs-6 col-lg-6">
+                    <div class="event-card-name">
+                      <%= event.name %>
+                    </div>
+                  </div>
+                  <div class="col-xs-6 col-lg-6">
+                    <div class="event-card-start-time">
+                      <p>From:</p>
+                      <%= event.start_date.strftime("%-d/%-m/%y: %k:00") %>
+                    </div>
+                    <div class="event-card-end-time">
+                      <p>To: </p>
+                      <%= event.end_date.strftime("%-d/%-m/%y: %k:00") %>
+                    </div>
+                  </div>
                 </div>
-                <div class="event-card-start-time">
-                  <%= event.start_date.strftime("%-d/%-m/%y: %k:00") %>
+
+                <div class="row">
+                  <div class="event-card-description">
+                    <%= event.description %>
+                  </div>
                 </div>
-                <div class="event-card-end-time">
-                  <%= event.end_date.strftime("%-d/%-m/%y: %k:00") %>
+
+                <div class="row">
+                  <div class="event-card-emerg">
+                    <p>Contacts to notify:</p>
+                    <%= event.emergency_contacts.pluck(:first_name).join(", ") %>
+                  </div>
                 </div>
               </div>
-              <div class="col-xs-6">
-                <div class="event-card-description">
-                  <%= event.description %>
-                </div>
-              </div>
-              <div class="col-xs-2">
-                <div class="event-card-emerg">
-                  <p>Contacts to notify:</p>
-                  <%= event.emergency_contacts.pluck(:first_name).join(", ") %>
-                </div>
-              </div>
-              <div class="col-xs-2">
+              <div class="col-xs-12 col-lg-4">
                 <div class="event-card-location">
-                  <p>Location:</p>
                   <%= event.location %>
-                  <img class="avatar-large" src="https://www.london.ca/Maps/PublishingImages/new-citymap-forks.png">
                 </div>
               </div>
             </div>
