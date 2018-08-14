@@ -6,13 +6,6 @@
   </div>
 </div>
 
-<div> <img src="https://maps.googleapis.com/maps/api/staticmap?center=Brooklyn+Bridge,New+York,NY&zoom=13&size=600x300&maptype=roadmap
-&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318
-&markers=color:red%7Clabel:C%7C40.718217,-73.998284
-&key=AIzaSyDAC0TPT8VTsQ64MxkQT8gz9O9bGOfLUfs"> </div>
-
-<div> <img src="https://maps.googleapis.com/maps/api/staticmap?center=CGI.escape"#{@event.location}"&zoom=13&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C#{@event.latitude},#{@event.longitude}&key=AIzaSyDAC0TPT8VTsQ64MxkQT8gz9O9bGOfLUfs"> </div>
-
 <div class="dashboard-container">
   <div class="row dashboard-row">
     <div class="col-lg-8 col-xs-12">
@@ -43,7 +36,7 @@
             <% @events.each do |event| %>
             <%= link_to event_path(event) do %>
             <div class="event-card">
-              <div class="col-xs-12 col-lg-8" id="ecn">
+              <div class="col-xs-12 col-lg-6" id="ecn">
                 <div class="row">
                   <div class="col-xs-6 col-lg-6">
                     <div class="event-card-name">
@@ -75,9 +68,10 @@
                   </div>
                 </div>
               </div>
-              <div class="col-xs-12 col-lg-4">
+              <div class="col-xs-12 col-lg-6">
                 <div class="event-card-location">
                   <%= event.location %>
+                  <div> <img src="https://maps.googleapis.com/maps/api/staticmap?center=<%= CGI.escape "#{event.location}" %>&zoom=13&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C<%= event.latitude %>,<%= event.longitude %>&key=AIzaSyDAC0TPT8VTsQ64MxkQT8gz9O9bGOfLUfs" class="event-map"> </div>
                 </div>
               </div>
             </div>
