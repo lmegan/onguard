@@ -46,8 +46,10 @@ ActiveRecord::Schema.define(version: 2018_08_12_134203) do
 
   create_table "events", force: :cascade do |t|
     t.string "name"
-    t.datetime "start_date"
-    t.datetime "end_date"
+    t.date "start_date"
+    t.date "end_date"
+    t.time "start_time"
+    t.time "end_time"
     t.text "description"
     t.string "location"
     t.boolean "active"
