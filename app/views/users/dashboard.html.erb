@@ -102,20 +102,25 @@
         <div>
           <% @emergency_contacts.each do |emergency_contact| %>
           <div class="row" id="emerg-contact-row">
-          <%= emergency_contact.first_name %>
-          <%= emergency_contact.last_name %>
-          <i class="fas fa-phone"></i>
-          <%= emergency_contact.phone_number %>
-          <%= link_to emergency_contact_path(emergency_contact),
-              method: :delete,
-              data: { confirm: "Are you sure?" } do %>
-              <i class="far fa-trash-alt"></i>
-              <% end %>
+            <div class="col-xs-4">
+              <%= emergency_contact.first_name %>
+              <%= emergency_contact.last_name %>
+            </div>
+            <div class="col-xs-5">
+              <i class="fas fa-phone"></i>
+              <%= emergency_contact.phone_number %>
+            </div>
+            <div class="col-xs-2">
+              <%= link_to emergency_contact_path(emergency_contact),
+                  method: :delete,
+                  data: { confirm: "Are you sure?" } do %>
+                  <i class="far fa-trash-alt"></i>
+                  <% end %>
+            </div>
         </div>
         <% end %>
         <div>
         <div>
-        <!-- <button type="button" class="contact-button" data-toggle="modal" data-target=".bd-example-modal-sm">Add an emergency contact</button> -->
         </div>
       </div>
     </div>
@@ -147,7 +152,6 @@
         <input name="end_time" class="flatpickr" id= "end-time" data-enabletime="true" data-nocalendar="true" value="09:00">
         <%= f.input :description %>
         <%= render 'layouts/autocomplete' , event_location: @event.location %>
-
         <%= f.association :emergency_contacts, as: :check_boxes, collection: current_user.emergency_contacts.order(:first_name), value_method: :first_name, label_method: :first_name  %>
         <%= f.input :active, :as => :hidden %>
         <%= f.submit "Add Event", class: "btn btn-primary" %>
