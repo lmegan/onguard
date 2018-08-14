@@ -41,7 +41,7 @@
             </div>
             </div>
           <div class="col-sm-4 photo-event" >
-          <img id="my-map" height="300" width="400">
+          <div id="my-map" style="height: 300px; width: 400px;"></div>
         </div>
 
 
@@ -110,32 +110,37 @@
              <%= f.input :active, as: :boolean %>
 
            </div>
-           <div class="col-xs-12"><%= f.submit "Update Event", class: "btn-primary btn" %></div>
+           <div class="col-xs-12"><%= f.submit "Update Event", class: "btn btn-standard" %></div>
            <% end %>
          </div>
        </div>
-       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
+
     </div>
 
   </div>
 </div>
 </div>
 
+
+
 <script>
 
-
-  function initMap() {
+  function initMaps() {
+    var lat = <%= @event.latitude ||  "-33.8688" %>;
+    var long = <%= @event.longitude ||  "151.2195" %>;
     var map = new google.maps.Map(document.getElementById('mymap'), {
-      center: {lat: -33.8688, lng: 151.2195},
+      center: {lat: lat, lng: long},
+      zoom: 13
+    });
+    var mapShow = new google.maps.Map(document.getElementById('my-map'), {
+      center: {lat: lat, lng: long},
       zoom: 13
     });
     var card = document.getElementById('pac-card');
     var input = document.getElementById('pac-input');
     // var types = document.getElementById('type-selector');
     // console.log(types)
-    var strictBounds = document.getElementById('strict-bounds-selector');
+    // var strictBounds = document.getElementById('strict-bounds-selector');
 
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
 
@@ -194,10 +199,9 @@
           infowindow.open(map, marker);
         });
 
-
       }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_BROWSER_KEY'] %>&libraries=places&callback=initMap"
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_BROWSER_KEY'] %>&libraries=places&callback=initMaps"
       async defer></script>
 
 
