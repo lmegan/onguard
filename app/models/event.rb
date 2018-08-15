@@ -3,7 +3,7 @@ class Event < ApplicationRecord
   has_many :emergency_contact_events, dependent: :destroy
 
   has_many :event_logs, dependent: :destroy
-  has_many :emergency_contact, through: :emergency_contact_events
+  has_many :emergency_contacts, through: :emergency_contact_events
 
   validates :name, presence: true
   validates :location, presence: true

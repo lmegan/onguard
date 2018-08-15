@@ -34,7 +34,7 @@
           <% if @events.count >= 1  %>
           <div class="event-title">Your events</div>
             <% @events.each do |event| %>
-            <%= link_to event_path(event) do %>
+            <%= link_to event_path(event.slug) do %>
             <div class="event-card">
               <div class="col-xs-12 col-lg-6" id="ecn">
                 <div class="row">

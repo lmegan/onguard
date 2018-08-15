@@ -17,7 +17,7 @@
               <div class="event-show-description"><p><%= @event.description %></p></div>
                 <!-- <div class="event-line"></div> -->
               <div class="event-dates">
-                  <div class="event-line"></div>
+                  <div class="event-line-in-box"></div>
                 <p>Location:  <%= @event.location %></p>
                 <p>Event Starts: <%= @event.start_date %></p>
                 <p>Event Ends: <%= @event.end_date %></p>
@@ -29,14 +29,13 @@
                   <button type="button" class="btn btn-standard" data-toggle="modal" data-target="#myModal">Update Event</button>
 
 
-                    <%= link_to "Delete event", event_path(@event),
+                    <%= link_to "Delete event", event_path(@event.slug),
                    method: :delete,
                    data: { confirm: "Are you sure?" }, class: "btn-standard" %>
                   <% if @event.active == true %>
-               <button class="btn-standard" class="event-deactivate-trigger">
-                <%= link_to "Deactivate Event", deactivate_event_path(@event), method: :post %>
+                <%= link_to "Deactivate Event", deactivate_event_path(@event.slug),  method: :post, class: "btn-standard" %>
                 <% end %>
-              </button>
+
             </div>
           </div>
 
@@ -88,7 +87,7 @@
         <h4 class="modal-title">Update the Event</h4>
         <div class="event-form-container">
           <div class="col-xs-12">
-            <%= simple_form_for @event do |f| %>
+            <%= simple_form_for @event.slug, method: :patch do |f| %>
             <div class="form-input">
               <%= f.input :name %>
               <div class="event-dates-container">
@@ -104,7 +103,7 @@
                </div>
              </div>
              <%= f.input :description %>
-
+             <label> Location: </label>
              <%= render 'layouts/autocomplete' , event_location: @event.location %>
 
              <%= f.input :active, as: :boolean %>
