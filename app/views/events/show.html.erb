@@ -15,20 +15,23 @@
            <div class="col-xs-12 col-sm-8">
             <div class="event-details-left">
               <div class="event-show-description"><p><%= @event.description %></p></div>
+                <!-- <div class="event-line"></div> -->
               <div class="event-dates">
+                  <div class="event-line"></div>
                 <p>Location:  <%= @event.location %></p>
                 <p>Event Starts: <%= @event.start_date %></p>
                 <p>Event Ends: <%= @event.end_date %></p>
               </div>
-                  <div class="col-sm-6" >
+
+                  <div class="col-xs-12" >
             <div class="links-from-event-show-page">
 
                   <button type="button" class="btn btn-standard" data-toggle="modal" data-target="#myModal">Update Event</button>
 
-                   <button class="btn-standard"><%= link_to "Delete event", event_path(@event),
+
+                    <%= link_to "Delete event", event_path(@event),
                    method: :delete,
-                   data: { confirm: "Are you sure?" } %>
-                 </button>
+                   data: { confirm: "Are you sure?" }, class: "btn-standard" %>
                   <% if @event.active == true %>
                <button class="btn-standard" class="event-deactivate-trigger">
                 <%= link_to "Deactivate Event", deactivate_event_path(@event), method: :post %>
@@ -40,7 +43,7 @@
             </div>
             </div>
           <div class="col-sm-4 photo-event" >
-          <img class="event-photo" src="https://picsum.photos/200/400/?random">
+          <div id="my-map" style="height: 300px; width: 450px;"></div>
         </div>
 
 
@@ -73,18 +76,16 @@
     </ul>
 </div>
 
-
-
 <div class="modal fade bd-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Update the Event</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
+        <h4 class="modal-title">Update the Event</h4>
         <div class="event-form-container">
           <div class="col-xs-12">
             <%= simple_form_for @event do |f| %>
@@ -105,17 +106,15 @@
              <%= f.input :description %>
 
              <%= render 'layouts/autocomplete' , event_location: @event.location %>
-             <div id="map" style=""></div>
+
              <%= f.input :active, as: :boolean %>
 
            </div>
-           <div class="col-xs-12"><%= f.submit "Update Event", class: "btn-primary btn" %></div>
+           <div class="col-xs-12"><%= f.submit "Update Event", class: "btn btn-standard" %></div>
            <% end %>
          </div>
        </div>
-       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
+
     </div>
 
   </div>
@@ -124,25 +123,28 @@
 
 
 
+<script>
 
-    <script>
-      // This example requires the Places library. Include the libraries=places
-      // parameter when you first load the API. For example:
-      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+  function initMaps() {
+    var lat = <%= @event.latitude ||  "-33.8688" %>;
+    var long = <%= @event.longitude ||  "151.2195" %>;
+    var map = new google.maps.Map(document.getElementById('mymap'), {
+      center: {lat: lat, lng: long},
+      zoom: 13
+    });
+    var mapShow = new google.maps.Map(document.getElementById('my-map'), {
+      center: {lat: lat, lng: long},
+      zoom: 13
+    });
+    var card = document.getElementById('pac-card');
+    var input = document.getElementById('pac-input');
+    // var types = document.getElementById('type-selector');
+    // console.log(types)
+    // var strictBounds = document.getElementById('strict-bounds-selector');
 
-      function initMap() {
-        var map = new google.maps.Map(document.getElementById('mymap'), {
-          center: {lat: -33.8688, lng: 151.2195},
-          zoom: 13
-        });
-        var card = document.getElementById('pac-card');
-        var input = document.getElementById('pac-input');
-        var types = document.getElementById('type-selector');
-        var strictBounds = document.getElementById('strict-bounds-selector');
+    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
 
-        map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
-
-        var autocomplete = new google.maps.places.Autocomplete(input);
+    var autocomplete = new google.maps.places.Autocomplete(input);
 
         // Bind the map's bounds (viewport) property to the autocomplete object,
         // so that the autocomplete requests use the current map bounds for the
@@ -151,7 +153,7 @@
 
         // Set the data fields to return when the user selects a place.
         autocomplete.setFields(
-            ['address_components', 'geometry', 'icon', 'name']);
+          ['address_components', 'geometry', 'icon', 'name']);
 
         var infowindow = new google.maps.InfoWindow();
         var infowindowContent = document.getElementById('infowindow-content');
@@ -185,9 +187,9 @@
           var address = '';
           if (place.address_components) {
             address = [
-              (place.address_components[0] && place.address_components[0].short_name || ''),
-              (place.address_components[1] && place.address_components[1].short_name || ''),
-              (place.address_components[2] && place.address_components[2].short_name || '')
+            (place.address_components[0] && place.address_components[0].short_name || ''),
+            (place.address_components[1] && place.address_components[1].short_name || ''),
+            (place.address_components[2] && place.address_components[2].short_name || '')
             ].join(' ');
           }
 
@@ -197,29 +199,11 @@
           infowindow.open(map, marker);
         });
 
-        // Sets a listener on a radio button to change the filter type on Places
-        // Autocomplete.
-        function setupClickListener(id, types) {
-          var radioButton = document.getElementById(id);
-          radioButton.addEventListener('click', function() {
-            autocomplete.setTypes(types);
-          });
-        }
-
-        setupClickListener('changetype-all', []);
-        setupClickListener('changetype-address', ['address']);
-        setupClickListener('changetype-establishment', ['establishment']);
-        setupClickListener('changetype-geocode', ['geocode']);
-
-        document.getElementById('use-strict-bounds')
-            .addEventListener('click', function() {
-              console.log('Checkbox clicked! New state=' + this.checked);
-              autocomplete.setOptions({strictBounds: this.checked});
-            });
       }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_API_BROWSER_KEY']}&libraries=places&callback=initMap"
-        async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_BROWSER_KEY']%>&libraries=places&callback=initMaps"
+      async defer></script>
+
 
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script type="text/javascript">
@@ -245,7 +229,7 @@ flatpickr(endTime, {
     static: true
 });  // flatpickr
 </script>
-  </body>
+
 
 
 

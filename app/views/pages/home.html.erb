@@ -7,12 +7,14 @@
       <div class="head-home-content">
         <h1>Send messages to <br> your bot when <br> you go out</h1>
         <h3>Alert your contacts if needed</h3>
+        <% if !user_signed_in?  %>
         <div class="butn-fb-home">
           <%= link_to user_facebook_omniauth_authorize_path, :class => "sign-up-home" do %>
           <h4>Sign-up with Facebook</h4>
           <%end %>
         </div>
         <p>We'll never post without your approval</p>
+        <%end  %>
       </div>
     </div>
   </div>

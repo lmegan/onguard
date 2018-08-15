@@ -1,13 +1,11 @@
 // main page container
 .banner-event {
-  color: white;
-  text-align: center;
   height: 30vh;
   /* if you have a 70px navbar => height: calc(100vh - 70px); */
   background-size: cover !important;
-  display: flex;
-  align-items: center;
+
   justify-content: center;
+  min-width: 300px;
 }
 
 .event-show-container {
@@ -20,16 +18,18 @@ max-width: 96%;
 .event-line{
 margin-top: 20px;
 border-top: 1px solid #dce0e0;
-margin-left: 50px;
-margin-right: 50px;
+margin-left: 30px;
+margin-right: 32px;
 max-width: 96%
 }
 
 .event-details-box {
   border: 1px solid #dce0e0;
-  margin: -100px 15px 15px 23px;
+  margin: -120px 15px 15px 0;
   border-radius: 10px 10px;
   background-color: white;
+  min-width: 350px;
+  padding-bottom: 20px;
 }
 .event-show-name {
 padding-left: 15px;
@@ -56,23 +56,25 @@ color: #5c696f;
 }
 
 .links-from-event-show-page {
-margin-top: 20px;
-text-align: center;
-margin-bottom: 10px;
+
+margin-bottom: 20px;
+margin-top: 10px;
 display: flex;
-justify-content: flex-end;
-margin-left: -20px;
+margin-left: -16px;
+min-width: 307px;
+text-align: center;
 }
 
 
 .event-photo {
-height: 300px;
+height: 200px;
 width: 400px;
 margin-left: auto;
 margin-right: auto;//
 padding: 0;
 margin-bottom: 30px;
 margin-top: 10px;
+min-width: 500px;
 
 }
 
@@ -95,8 +97,8 @@ color: #1d97c1;
   padding: 0 20px;
   margin-top: 5px;
   max-width: 96%;
-  margin-left: 51px;
-  margin-right: 50px;
+  margin-left: 32px;
+  margin-right: 32px;
 
 
 }

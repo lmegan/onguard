@@ -21,6 +21,9 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     @start_date = DateTime.parse("#{params[:start_date]} #{params[:start_time]}")
     @end_date = DateTime.parse("#{params[:end_date]} #{params[:end_time]}")
+    params[:event][:emergency_contact_ids].reject(&:empty?).each do |emergency_contact_name|
+      @event.emergency_contacts << EmergencyContact.find_by_first_name(emergency_contact_name)
+    end
     @event.start_date = @start_date
     @event.end_date = @end_date
     @user = current_user
@@ -42,7 +45,6 @@ class EventsController < ApplicationController
   end
 
   def update
-
     if @event.update(event_params)
       redirect_to event_path(@event)
     else

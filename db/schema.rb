@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2018_08_15_030218) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,10 +48,8 @@ ActiveRecord::Schema.define(version: 2018_08_15_030218) do
 
   create_table "events", force: :cascade do |t|
     t.string "name"
-    t.date "start_date"
-    t.date "end_date"
-    t.time "start_time"
-    t.time "end_time"
+    t.datetime "start_date"
+    t.datetime "end_date"
     t.text "description"
     t.string "location"
     t.boolean "active"
@@ -59,8 +59,13 @@ ActiveRecord::Schema.define(version: 2018_08_15_030218) do
     t.string "slug"
     t.float "latitude"
     t.float "longitude"
+<<<<<<< HEAD
     t.string "status", default: "pending"
     t.string "token"
+=======
+    t.string "event_number"
+    t.index ["event_number"], name: "index_events_on_event_number"
+>>>>>>> 3b2f7d208a7f144aa6d9475888248eb2035fa374
     t.index ["slug"], name: "index_events_on_slug", unique: true
     t.index ["user_id"], name: "index_events_on_user_id"
   end
