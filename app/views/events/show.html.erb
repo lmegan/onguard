@@ -29,11 +29,11 @@
                   <button type="button" class="btn btn-standard" data-toggle="modal" data-target="#myModal">Update Event</button>
 
 
-                    <%= link_to "Delete event", event_path(@event),
+                    <%= link_to "Delete event", event_path(@event.slug),
                    method: :delete,
                    data: { confirm: "Are you sure?" }, class: "btn-standard" %>
                   <% if @event.active == true %>
-                <%= link_to "Deactivate Event", deactivate_event_path(@event),  method: :post, class: "btn-standard" %>
+                <%= link_to "Deactivate Event", deactivate_event_path(@event.slug),  method: :post, class: "btn-standard" %>
                 <% end %>
 
             </div>
@@ -87,7 +87,7 @@
         <h4 class="modal-title">Update the Event</h4>
         <div class="event-form-container">
           <div class="col-xs-12">
-            <%= simple_form_for @event do |f| %>
+            <%= simple_form_for @event.slug, method: :patch do |f| %>
             <div class="form-input">
               <%= f.input :name %>
               <div class="event-dates-container">
