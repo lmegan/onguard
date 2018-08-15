@@ -17,7 +17,7 @@
               <div class="event-show-description"><p><%= @event.description %></p></div>
                 <!-- <div class="event-line"></div> -->
               <div class="event-dates">
-                  <div class="event-line"></div>
+                  <div class="event-line-in-box"></div>
                 <p>Location:  <%= @event.location %></p>
                 <p>Event Starts: <%= @event.start_date %></p>
                 <p>Event Ends: <%= @event.end_date %></p>
@@ -33,10 +33,9 @@
                    method: :delete,
                    data: { confirm: "Are you sure?" }, class: "btn-standard" %>
                   <% if @event.active == true %>
-               <button class="btn-standard" class="event-deactivate-trigger">
-                <%= link_to "Deactivate Event", deactivate_event_path(@event), method: :post %>
+                <%= link_to "Deactivate Event", deactivate_event_path(@event),  method: :post, class: "btn-standard" %>
                 <% end %>
-              </button>
+
             </div>
           </div>
 
@@ -104,7 +103,7 @@
                </div>
              </div>
              <%= f.input :description %>
-
+             <label> Location: </label>
              <%= render 'layouts/autocomplete' , event_location: @event.location %>
 
              <%= f.input :active, as: :boolean %>

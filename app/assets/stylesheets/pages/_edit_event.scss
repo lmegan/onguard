@@ -1,24 +1,22 @@
 .event-form-container {
-  width: 40%;
+
   display: flex;
   border: 1px solid #dce0e0;
-  margin: 40px auto;
   border-radius: 40px 40px;
   padding: 20px;
   font-weight: lighter;
-  min-width: 400px;
+  min-width: 300px;
   label {
     font-weight: normal;
   }
 }
-.modal-content {
-  width: 500px;
+input {
+  border-radius: 10px;
+  margin: auto;
 }
-
-
   .event-dates-container {
     display: flex;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
      }
   .btn-standard {
     display: flex;
@@ -28,8 +26,8 @@
 /////////////////
 
   #mymap {
-    height: 300px;
-    width: 330px;
+    height: 230px;
+    width: 300px;
   }
 
   #description {
