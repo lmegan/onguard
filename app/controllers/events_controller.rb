@@ -46,7 +46,7 @@ class EventsController < ApplicationController
 
   def update
     if @event.update(event_params)
-      redirect_to event_path(@event)
+      redirect_to event_path(@event.slug)
     else
       render :edit
     end
@@ -54,7 +54,7 @@ class EventsController < ApplicationController
 
   def deactivate
     @event.update_attributes(active: false)
-    redirect_to event_path(@event)
+    redirect_to event_path(@event.slug)
 end
 
   def destroy

@@ -36,9 +36,6 @@
         <%= link_to "Connect with Chatbot", dashboard_path, :class=> "help" %>
       </div>
     </div>
-  </div>
-
-
 
   <div class="accordion" id="accordionExample">
     <div class="card">
@@ -126,27 +123,34 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Add an Event</h5>
+        <h4 class="modal-title">Add an Event</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
+        <div class="event-form-container">
+        <div class="col-xs-12">
         <%= simple_form_for @event do |f| %>
+        <div class="form-input">
         <%= f.input :name %>
-        <label>Start Date</label>
-        <input name="start_date" class="flatpickr flatpickr-input" id= "start-day" data-dateFormat="l, F j, Y">
-        <label>Start Time</label>
-        <input name="start_time" class="flatpickr" id="start-time">
-        <label>End Date</label>
-        <input name="end_date" class="flatpickr flatpickr-input" id= "end-day" data-dateFormat="l, F j, Y">
-        <label>End Time</label>
-        <input name="end_time" class="flatpickr" id= "end-time" data-enabletime="true" data-nocalendar="true" value="09:00">
+          <div class="event-dates-container">
+          <div class="col-xs-6">
+        <label>Event starts:</label>
+        <input name="start_date" class="flatpickr flatpickr-input form-control" placeholder="date" id= "start-day" data-dateFormat="l, F j, Y" value="<%= @event.start_date %> ">
+        <input name="start_time" class="flatpickr form-control" placeholder="time" id="start-time" value="<%= @event.start_date %> " >
+                </div>
+       <div class="col-xs-6">
+       <label>Event ends:</label>
+       <input name="end_date" class="flatpickr flatpickr-input form-control" placeholder="date"id= "end-day" data-dateFormat="l, F j, Y" value="<%= @event.end_date %> ">
+       <input name="end_time" class="flatpickr form-control" placeholder="time" id="end-time" value="<%= @event.end_date %> ">
+     </div>
+   </div>
         <%= f.input :description %>
         <%= render 'layouts/autocomplete' , event_location: @event.location %>
         <%= f.association :emergency_contacts, as: :check_boxes, collection: current_user.emergency_contacts.order(:first_name), value_method: :first_name, label_method: :first_name  %>
         <%= f.input :active, :as => :hidden %>
-        <%= f.submit "Add Event", class: "btn btn-primary" %>
+         <div class="col-xs-12"><%= f.submit "Add Event", class: "btn btn-standard"%></div>
         <% end %>
       </div>
       <div class="modal-footer">
@@ -155,25 +159,34 @@
     </div>
   </div>
 </div>
+</div>
+</div>
+</div>
 
 
 <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Add an emergency contact</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
+        <h5 class="modal-title">Add an emergency contact</h5>
+         <div class="event-form-container">
+          <div class="col-xs-12">
         <%= simple_form_for @emergency_contact do |f| %>
+         <div class="form-input">
           <%= f.input :first_name %>
           <%= f.input :last_name %>
           <%= f.input :phone_number %>
-          <%= f.submit "Add Contact", class: "btn btn-primary" %>
+          <%= f.submit "Add Contact", class: "btn btn-standard" %>
         <% end %>
+         </div>
+       </div>
       </div>
+    </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>

@@ -1,6 +1,9 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  acts_as_token_authenticatable
+
+  attr_accessor :account_linking_token, :redirect_uri
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: %i[facebook]
@@ -33,6 +36,35 @@ class User < ApplicationRecord
 
     return user
   end
+
+
+    def first_next_event
+     self.events.where(status: "pending").order(start_date: :asc).first
+    end
+
+    def active_event
+      self.events.where(status: "active").first
+    end
+
+
+def trigger_emergency
+
+account_sid = ENV['ACCOUNT_SID']
+auth_token = ENV['AUTH_TOKEN']
+@client = Twilio::REST::Client.new(account_sid, auth_token)
+@client.messages.create(
+                             body: 'Hello there!',
+                             from: 'whatsapp:+441618507453',
+                             to: 'whatsapp:+18033671560'
+                           )
+p "hellsssso"
+end
+
+
+
+#User.find(2).events.first.emergency_contact_events.first.emergency_contact.phone_number
+
+
 
 end
 

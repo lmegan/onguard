@@ -5,7 +5,7 @@
   background-size: cover !important;
 
   justify-content: center;
-  min-width: 500px;
+  min-width: 300px;
 }
 
 .event-show-container {
@@ -18,17 +18,22 @@ max-width: 96%;
 .event-line{
 margin-top: 20px;
 border-top: 1px solid #dce0e0;
-margin-left: 50px;
-margin-right: 50px;
+margin-left: 30px;
+margin-right: 32px;
 max-width: 96%
+}
+.event-line-in-box {
+margin-top: 10px;
+margin-bottom: 10px;
+border-top: 1px solid #dce0e0;
 }
 
 .event-details-box {
   border: 1px solid #dce0e0;
-  margin: -100px 15px 15px 23px;
+  margin: -120px 15px 15px 0;
   border-radius: 10px 10px;
   background-color: white;
-  min-width: 400px;
+  min-width: 350px;
   padding-bottom: 20px;
 }
 .event-show-name {
@@ -60,9 +65,9 @@ color: #5c696f;
 margin-bottom: 20px;
 margin-top: 10px;
 display: flex;
-margin-left: -20px;
-width: 50%;
-min-width: 365px;
+margin-left: -16px;
+min-width: 307px;
+text-align: center;
 }
 
 
@@ -97,8 +102,8 @@ color: #1d97c1;
   padding: 0 20px;
   margin-top: 5px;
   max-width: 96%;
-  margin-left: 51px;
-  margin-right: 50px;
+  margin-left: 32px;
+  margin-right: 32px;
 
 
 }
