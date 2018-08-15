@@ -24,7 +24,9 @@ input {
   }
 
 /////////////////
-
+  .form-group {
+    margin-top: 15px;
+  }
   #mymap {
     height: 230px;
     width: 300px;
@@ -82,7 +84,7 @@ input {
     font-size: 15px;
     font-weight: 300;
     text-overflow: ellipsis;
-    width: 330px;
+    width: 300px;
     margin-left: 0 !important;
 
   }

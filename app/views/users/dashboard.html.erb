@@ -8,6 +8,8 @@
       <div class="zig-zag"></div>
     </div>
   </div>
+
+
   <div class="row">
     <div class="col-xs-6 dashboard-menu">
       <div class="dashboard-menu-item">
@@ -31,11 +33,12 @@
     </div>
     <div class="col-xs-6 dashboard-menu">
       <div class="dashboard-menu-item">
-        <i class="far fa-comments" style="color:#9c9c9c"></i>
+        <i class="fab fa-facebook-messenger" style="color:#9c9c9c"></i>
         <div class="small-font"><p>Going out for your event?</p></div>
         <%= link_to "Connect with Chatbot", dashboard_path, :class=> "help" %>
       </div>
     </div>
+  </div>
 
   <div class="accordion" id="accordionExample">
     <div class="card">
@@ -53,22 +56,30 @@
             <% if @events.count >= 1  %>
               <% @events.each do |event| %>
               <%= link_to event_path(event) do %>
-                <div class="row">
+                <div class="row" id="event-name">
                   <%= event.name %>
-                  <p>From:</p>
-                  <%= event.start_date.strftime("%-d/%-m/%y: %k:00") %>
-                  <p>To: </p>
-                  <%= event.end_date.strftime("%-d/%-m/%y: %k:00") %>
                 </div>
-                <div class="row">
+                <div class="row" id="event-date-time">
+                  <div class="col-xs-6">
+                    <p>From:</p>
+                    <%= event.start_date.strftime("%-d/%-m/%y: %k:00") %>
+                  </div>
+                  <div class="col-xs-6">
+                    <p>To: </p>
+                    <%= event.end_date.strftime("%-d/%-m/%y: %k:00") %>
+                  </div>
+                </div>
+                <div class="row" id="event-description">
                   <%= event.description %>
                 </div>
-                <div class="row">
+                <div class="row" id="event-contacts">
                   <p>Contacts to notify:</p>
                   <%= event.emergency_contacts.pluck(:first_name).join(", ") %>
                 </div>
-                <div class="row">
+                <div class="row" id="event-location">
                   <%= event.location %>
+                </div>
+                <div class="row">
                   <div> <img src="https://maps.googleapis.com/maps/api/staticmap?center=<%= CGI.escape "#{event.location}" %>&zoom=13&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C<%= event.latitude %>,<%= event.longitude %>&key=AIzaSyDAC0TPT8VTsQ64MxkQT8gz9O9bGOfLUfs" class="event-map"> </div>
                 </div>
               <% end %>
@@ -112,10 +123,23 @@
         </div>
       </div>
     </div>
+    <div class="card">
+      <div class="card-header" id="headingThree">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            Calendar
+          </button>
+        </h5>
+      </div>
+      <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+        <div class="card-body">
+          <%= month_calendar do |date| %>
+            <%= date.day %>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
-
-
-
 </div>
 
 
@@ -193,4 +217,103 @@
     </div>
   </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script type="text/javascript">
+const startDate = document.querySelector("#start-day");
+flatpickr(startDate, {
+  dateFormat: "Y-m-d",
+});  // flatpickr
+
+const endDate = document.querySelector("#end-day");
+flatpickr(endDate, {
+  dateFormat: "Y-m-d",
+});  // flatpickr
+  const startTime = document.querySelector("#start-time");
+flatpickr(startTime, {
+    enableTime: true,
+    noCalendar: true,
+    static: true
+});  // flatpickr
+  const endTime = document.querySelector("#end-time");
+flatpickr(endTime, {
+    enableTime: true,
+    noCalendar: true,
+    static: true
+});  // flatpickr
+</script>
+<script>
+  function initMap() {
+    var map = new google.maps.Map(document.getElementById('mymap'), {
+      center: {lat: -33.8688, lng: 151.2195},
+      zoom: 13
+    });
+    var card = document.getElementById('pac-card');
+    var input = document.getElementById('pac-input');
+    // var types = document.getElementById('type-selector');
+    // console.log(types)
+    var strictBounds = document.getElementById('strict-bounds-selector');
+
+    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
+
+    var autocomplete = new google.maps.places.Autocomplete(input);
+
+        // Bind the map's bounds (viewport) property to the autocomplete object,
+        // so that the autocomplete requests use the current map bounds for the
+        // bounds option in the request.
+        autocomplete.bindTo('bounds', map);
+
+        // Set the data fields to return when the user selects a place.
+        autocomplete.setFields(
+          ['address_components', 'geometry', 'icon', 'name']);
+
+        var infowindow = new google.maps.InfoWindow();
+        var infowindowContent = document.getElementById('infowindow-content');
+        infowindow.setContent(infowindowContent);
+        var marker = new google.maps.Marker({
+          map: map,
+          anchorPoint: new google.maps.Point(0, -29)
+        });
+
+        autocomplete.addListener('place_changed', function() {
+          infowindow.close();
+          marker.setVisible(false);
+          var place = autocomplete.getPlace();
+          if (!place.geometry) {
+            // User entered the name of a Place that was not suggested and
+            // pressed the Enter key, or the Place Details request failed.
+            window.alert("No details available for input: '" + place.name + "'");
+            return;
+          }
+
+          // If the place has a geometry, then present it on a map.
+          if (place.geometry.viewport) {
+            map.fitBounds(place.geometry.viewport);
+          } else {
+            map.setCenter(place.geometry.location);
+            map.setZoom(17);  // Why 17? Because it looks good.
+          }
+          marker.setPosition(place.geometry.location);
+          marker.setVisible(true);
+
+          var address = '';
+          if (place.address_components) {
+            address = [
+            (place.address_components[0] && place.address_components[0].short_name || ''),
+            (place.address_components[1] && place.address_components[1].short_name || ''),
+            (place.address_components[2] && place.address_components[2].short_name || '')
+            ].join(' ');
+          }
+
+          infowindowContent.children['place-icon'].src = place.icon;
+          infowindowContent.children['place-name'].textContent = place.name;
+          infowindowContent.children['place-address'].textContent = address;
+          infowindow.open(map, marker);
+        });
+
+
+      }
+    </script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_BROWSER_KEY'] %>&libraries=places&callback=initMap"
+      async defer></script>
 
