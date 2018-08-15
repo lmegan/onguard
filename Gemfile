@@ -23,6 +23,8 @@ gem 'facebook-messenger'
 gem 'dotenv', '~> 2.1', '>= 2.1.1'
 gem 'api-ai-ruby'
 gem 'figaro'
+gem "simple_calendar", "~> 2.0"
+
 
 
 gem 'twilio-ruby'
