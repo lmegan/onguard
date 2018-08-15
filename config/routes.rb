@@ -7,10 +7,13 @@ Rails.application.routes.draw do
     resources :event_logs, only: [:show]
   end
   resources :emergency_contacts
-devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users,
+    controllers: { omniauth_callbacks: 'users/omniauth_callbacks',
+                  sessions: 'users/sessions'
+                 }
   root to: 'pages#home'
 
-  # mount Facebook::Messenger::Server, at: "bot"
+  mount Facebook::Messenger::Server, at: "bot"
 
 
   patch "complete_profile", to: "users#complete_profile", as: "complete_profile"
@@ -22,3 +25,4 @@ devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_call
 
 
 end
+
