@@ -42,11 +42,11 @@
 
   <div class="accordion" id="accordionExample">
     <div class="card">
-      <div class="card-header" id="headingOne">
+      <div class="panel-heading" id="headingOne">
         <h5 class="mb-0">
-          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-            Events
-          </button>
+          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+          EVENTS
+          </a>
         </h5>
       </div>
 
@@ -57,17 +57,17 @@
               <% @events.each do |event| %>
 
               <%= link_to event_path(event.slug) do %>
-                <div class="row">
-
+                <div class="row" id="event-name">
                   <%= event.name %>
                 </div>
                 <div class="row" id="event-date-time">
-                  <div class="col-xs-6">
-                    <p>From:</p>
+                  <div class="col-xs-2">
+                    <i class="far fa-calendar-alt"></i>
+                  </div>
+                  <div class="col-xs-5">
                     <%= event.start_date.strftime("%-d/%-m/%y: %k:00") %>
                   </div>
-                  <div class="col-xs-6">
-                    <p>To: </p>
+                  <div class="col-xs-5">
                     <%= event.end_date.strftime("%-d/%-m/%y: %k:00") %>
                   </div>
                 </div>
@@ -79,8 +79,12 @@
                   <%= event.emergency_contacts.pluck(:first_name).join(", ") %>
                 </div>
                 <div class="row" id="event-location">
-                  <%= event.location %>
-
+                  <div class="col-xs-1">
+                    <i class="fas fa-map-pin" height="15px"></i>
+                  </div>
+                  <div class="col-xs-11">
+                    <%= event.location %>
+                  </div>
                 </div>
                 <div class="row">
                   <div> <img src="https://maps.googleapis.com/maps/api/staticmap?&zoom=13&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C<%= @event.latitude %>,<%= @event.longitude %>&key=<%= ENV['GOOGLE_STATIC_MAP_KEY'] %>" class="event-map"> </div>
@@ -96,11 +100,11 @@
       </div>
     </div>
     <div class="card">
-      <div class="card-header" id="headingTwo">
+      <div class="panel-heading" id="headingTwo">
         <h5 class="mb-0">
-          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-            Emergency Contacts
-          </button>
+          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+          EMERGENCY CONTACTS
+          </a>
         </h5>
       </div>
       <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
@@ -128,11 +132,11 @@
       </div>
     </div>
     <div class="card">
-      <div class="card-header" id="headingThree">
+      <div class="panel-heading" id="headingThree">
         <h5 class="mb-0">
-          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-            Calendar
-          </button>
+          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+          CALENDAR
+          </a>
         </h5>
       </div>
       <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">

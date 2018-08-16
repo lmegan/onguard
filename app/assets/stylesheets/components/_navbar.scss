@@ -5,7 +5,7 @@
   // background: white;
   transition: all 0.3s ease;
   height: 70px;
-  padding: 0px 30px;
+  padding: 0px 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -19,8 +19,8 @@
 }
 /* User Avatar */
 .navbar-wagon .avatar {
-  height: 40px;
-  width: 40px;
+  height: 48px;
+  width: 48px;
   border-radius: 50%;
 }
 
@@ -34,7 +34,7 @@
 /* Basic navbar item */
 .navbar-wagon-item {
   cursor: pointer;
-  padding: 0 20px;
+  margin-right: 10px;
 }
 
 /* Navbar link */
