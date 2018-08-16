@@ -55,8 +55,10 @@
           <div class="event-cards">
             <% if @events.count >= 1  %>
               <% @events.each do |event| %>
-              <%= link_to event_path(event) do %>
-                <div class="row" id="event-name">
+
+              <%= link_to event_path(event.slug) do %>
+                <div class="row">
+
                   <%= event.name %>
                 </div>
                 <div class="row" id="event-date-time">
@@ -78,9 +80,11 @@
                 </div>
                 <div class="row" id="event-location">
                   <%= event.location %>
+
                 </div>
                 <div class="row">
                   <div> <img src="https://maps.googleapis.com/maps/api/staticmap?center=<%= CGI.escape "#{event.location}" %>&zoom=13&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C<%= event.latitude %>,<%= event.longitude %>&key=ENV[GOOGLE-STATIC-MAP-KEY]" class="event-map"> </div>
+
                 </div>
               <% end %>
               <% end %>
@@ -155,7 +159,7 @@
       <div class="modal-body">
         <div class="event-form-container">
         <div class="col-xs-12">
-        <%= simple_form_for @event do |f| %>
+        <%= simple_form_for @event, url: events_path, method: :post do |f| %>
         <div class="form-input">
         <%= f.input :name %>
           <div class="event-dates-container">
