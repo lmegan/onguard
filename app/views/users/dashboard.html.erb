@@ -83,7 +83,7 @@
 
                 </div>
                 <div class="row">
-                  <div> <img src="https://maps.googleapis.com/maps/api/staticmap?center=<%= CGI.escape "#{event.location}" %>&zoom=13&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C<%= event.latitude %>,<%= event.longitude %>&key=ENV[GOOGLE-STATIC-MAP-KEY]" class="event-map"> </div>
+                  <div> <img src="https://maps.googleapis.com/maps/api/staticmap?&zoom=13&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C<%= @event.latitude %>,<%= @event.longitude %>&key=<%= ENV['GOOGLE_STATIC_MAP_KEY'] %>" class="event-map"> </div>
 
                 </div>
               <% end %>
@@ -151,11 +151,13 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Add an Event</h4>
+        <div class="header-text">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-      </div>
+         <h4 class="modal-title">Add an Event</h4>
+        </div>
+    </div>
       <div class="modal-body">
         <div class="event-form-container">
         <div class="col-xs-12">
@@ -163,12 +165,12 @@
         <div class="form-input">
         <%= f.input :name %>
           <div class="event-dates-container">
-          <div class="col-xs-6">
+          <div class="col-xs-6 event-time-1">
         <label>Event starts:</label>
         <input name="start_date" class="flatpickr flatpickr-input form-control" placeholder="date" id= "start-day" data-dateFormat="l, F j, Y" value="<%= @event.start_date %> ">
         <input name="start_time" class="flatpickr form-control" placeholder="time" id="start-time" value="<%= @event.start_date %> " >
                 </div>
-       <div class="col-xs-6">
+       <div class="col-xs-6 event-time-2">
        <label>Event ends:</label>
        <input name="end_date" class="flatpickr flatpickr-input form-control" placeholder="date"id= "end-day" data-dateFormat="l, F j, Y" value="<%= @event.end_date %> ">
        <input name="end_time" class="flatpickr form-control" placeholder="time" id="end-time" value="<%= @event.end_date %> ">
@@ -178,11 +180,8 @@
         <%= render 'layouts/autocomplete' , event_location: @event.location %>
         <%= f.association :emergency_contacts, as: :check_boxes, collection: current_user.emergency_contacts.order(:first_name), value_method: :first_name, label_method: :first_name  %>
         <%= f.input :active, :as => :hidden %>
-         <div class="col-xs-12"><%= f.submit "Add Event", class: "btn btn-standard"%></div>
+         <div class="col-xs-12"><%= f.submit "Add Event", class: "btn btn-standard big"%></div>
         <% end %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -199,9 +198,9 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
+         <h4 class="modal-title">Add Emergency Contact</h4>
       </div>
       <div class="modal-body">
-        <h5 class="modal-title">Add an emergency contact</h5>
          <div class="event-form-container">
           <div class="col-xs-12">
         <%= simple_form_for @emergency_contact do |f| %>
@@ -209,15 +208,12 @@
           <%= f.input :first_name %>
           <%= f.input :last_name %>
           <%= f.input :phone_number %>
-          <%= f.submit "Add Contact", class: "btn btn-standard" %>
+          <%= f.submit "Add Contact", class: "btn btn-standard big" %>
         <% end %>
          </div>
        </div>
       </div>
     </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
     </div>
   </div>
 </div>
