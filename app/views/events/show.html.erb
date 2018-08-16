@@ -53,7 +53,8 @@
       <div class="row">
         <%= @event.location %>
         <div>
-          <img src="https://maps.googleapis.com/maps/api/staticmap?center=<%= CGI.escape "#{@event.location}" %>&zoom=13&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C<%= @event.latitude %>,<%= @event.longitude %>&key=AIzaSyDAC0TPT8VTsQ64MxkQT8gz9O9bGOfLUfs" class="show-map">
+
+          <img src="https://maps.googleapis.com/maps/api/staticmap?&zoom=13&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C<%= @event.latitude %>,<%= @event.longitude %>&key=<%= ENV['GOOGLE_STATIC_MAP_KEY'] %>" class="show-map">
         </div>
       </div>
     </div>

@@ -17,7 +17,11 @@
     font-weight: lighter;
   }
 }
-
+button.close {
+  position: absolute;
+  right: 20px;
+  margin: 0 !important;
+}
 .dashboard-menu {
   height: 30vh;
   text-align: center;
