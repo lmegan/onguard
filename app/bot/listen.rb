@@ -34,7 +34,7 @@ if user
           message.reply(text: "Anything else ?")
       end
     #The method first_next_event is defined in the user model and it will order all the events checking the start date. The first event will be the closest. Fisrt we check that User has pending event that are ready to start, than we check that the event start date is less than TimeNow: ex the event is at 18.00 and we text at 18.01. The bot automatically knows that he has to start to track that event. If yes we create a new event log and we sart to track the event (event: active)
-    elsif user.events.where(status: "pending").any? && user.first_next_event.start_date <= Time.now + 8.hour
+    elsif user.events.where(status: "pending").any? && user.first_next_event.start_date <= (Time.now + 8.hour)
         event = user.first_next_event
         event.status = "active"
         EventLog.new(description: "OnGuard is protecting  for the event #{event.name}", event: event).save
@@ -42,7 +42,7 @@ if user
         event.save
         message.reply(text: "Hello #{user.first_name}! I'm starting to register your event #{event.name}")
     #In this case we have events ready to be started but we write too early. The bot will order the event with the methods first_next_event and will tell us the date of our next event
-    elsif user.events.where(status: "pending").any? && !(user.first_next_event.start_date < Time.now + 8.hour)
+    elsif user.events.where(status: "pending").any? && !(user.first_next_event.start_date < (Time.now + 8.hour))
         event = user.first_next_event
         message.reply(text: waiting_for_a_new_event(user, event) )
     else
