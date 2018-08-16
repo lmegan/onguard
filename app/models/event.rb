@@ -14,7 +14,7 @@ class Event < ApplicationRecord
   validate :start_date_must_be_before_the_end_date
   #before_save :create_token
   before_create :set_slug
-  before_create :set_event_number
+  #before_create :set_event_number
   accepts_nested_attributes_for :emergency_contacts
   geocoded_by :location
   after_validation :geocode, if: :will_save_change_to_location?
@@ -39,11 +39,11 @@ class Event < ApplicationRecord
     end
   end
 
-  def set_event_number
-    loop do self.event_number = SecureRandom.hex(2)
-      break unless Event.where(event_number: event_number).exists?
-    end
-  end
+  # def set_event_number
+  #   loop do self.event_number = SecureRandom.hex(2)
+  #     break unless Event.where(event_number: event_number).exists?
+  #   end
+  # end
 
 
 end
