@@ -1,4 +1,6 @@
-<div class="banner-event" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('https://kitt.lewagon.com/placeholder/cities/berlin');">
+<div class="banner-event">
+
+    <img src="https://maps.googleapis.com/maps/api/staticmap?&zoom=13&size=600x310&maptype=roadmap&markers=color:blue%7Clabel:S%7C<%= @event.latitude %>,<%= @event.longitude %>&key=<%= ENV['GOOGLE_STATIC_MAP_KEY'] %>" class="show-map">
   <div class="banner-content"></div>
 </div>
 
@@ -34,28 +36,23 @@
         <div class="event-show-description">
           <p><%= @event.description %></p>
         </div>
+         <div class="event-line-in-box"></div>
       </div>
 
-      <div class="event-line-in-box"></div>
+
 
       <p>Location:  <%= @event.location %></p>
-      <div class="col-xs-12" >
+     <!--  <div class="col-xs-12" > -->
         <div class="links-from-event-show-page">
-          <button type="button" class="btn btn-standard" data-toggle="modal" data-target="#myModal">Update Event</button>
+          <button type="button" class="btn btn-standard big" data-toggle="modal" data-target="#myModal">Update Event</button>
           <%= link_to "Delete event", event_path(@event.slug),
             method: :delete,
-            data: { confirm: "Are you sure?" }, class: "btn-standard" %>
+            data: { confirm: "Are you sure?" }, class: "btn-standard big" %>
           <% if @event.active == true %>
-            <%= link_to "Deactivate Event", deactivate_event_path(@event.slug),  method: :post, class: "btn-standard" %>
+            <%= link_to "Deactivate Event", deactivate_event_path(@event.slug),  method: :post, class: "btn-standard big" %>
           <% end %>
         </div>
-      </div>
-      <div class="row">
-        <%= @event.location %>
-        <div>
-
-          <img src="https://maps.googleapis.com/maps/api/staticmap?&zoom=13&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C<%= @event.latitude %>,<%= @event.longitude %>&key=<%= ENV['GOOGLE_STATIC_MAP_KEY'] %>" class="show-map">
-        </div>
+     <!--  </div> -->
       </div>
     </div>
   </div>
@@ -143,15 +140,15 @@
       center: {lat: lat, lng: long},
       zoom: 13
     });
-    var mapShow = new google.maps.Map(document.getElementById('my-map'), {
-      center: {lat: lat, lng: long},
-      zoom: 13
-    });
+    // var mapShow = new google.maps.Map(document.getElementById('my-map'), {
+    //   center: {lat: lat, lng: long},
+    //   zoom: 13
+    // });
     var card = document.getElementById('pac-card');
     var input = document.getElementById('pac-input');
-    // var types = document.getElementById('type-selector');
+    var types = document.getElementById('type-selector');
     // console.log(types)
-    // var strictBounds = document.getElementById('strict-bounds-selector');
+    var strictBounds = document.getElementById('strict-bounds-selector');
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
     var autocomplete = new google.maps.places.Autocomplete(input);
         // Bind the map's bounds (viewport) property to the autocomplete object,
