@@ -2,9 +2,15 @@ body {
   background-color: white;
 }
 
+h1, h3 {
+  color: #1D8EC6;
+}
+
 
 .head-home-container {
   margin-top: 80px;
+  padding-bottom: 40px;
+  box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
 }
 
 .iphone-head-home {
@@ -25,7 +31,6 @@ body {
 .head-home-content h1 {
   font-size: 50px;
   text-align: center;
-  color: #1D8EC6;
 }
 
 .head-home-content h3 {
@@ -86,10 +91,11 @@ body {
 .wraper-two {
   margin-top: 40px;
   width: 100vw;
+  padding-bottom: 30px;
+  box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
 }
 
 .wraper-two h3, .wraper-two h4, .wraper-two p, .wraper-two a {
-  margin-left: 30px;
   text-align: center;
 }
 
@@ -100,7 +106,7 @@ body {
 .wraper-two p {
   color: rgb(160, 167, 174);
   margin-right: 30px;
-  margin-top: 30px;
+  margin-bottom: 30px;
   font-weight: lighter;
 }
 
