@@ -5,8 +5,8 @@ class User < ApplicationRecord
 
   attr_accessor :account_linking_token, :redirect_uri
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,
-         :omniauthable, omniauth_providers: %i[facebook]
+  :recoverable, :rememberable, :trackable, :validatable,
+  :omniauthable, omniauth_providers: %i[facebook]
   has_many :emergency_contacts, dependent: :destroy
   has_many :events, dependent: :destroy
   validates :first_name, presence: true
@@ -14,7 +14,7 @@ class User < ApplicationRecord
   validates :email, uniqueness: true
   # validates :phone_number, presence: true
 
-# facebook login stuff below
+  # facebook login stuff below
   def self.find_for_facebook_oauth(auth)
 
     user_params = auth.slice(:provider, :uid)
@@ -25,44 +25,39 @@ class User < ApplicationRecord
     user_params = user_params.to_h
 
     user = User.find_by(provider: auth.provider, uid: auth.uid)
-    user ||= User.find_by(email: auth.info.email) # User did a regular sign up in the past.
-    if user
-      user.update(user_params)
-    else
-      user = User.new(user_params)
-      user.password = Devise.friendly_token[0,20]  # Fake password for validation
-      user.save
-    end
+      user ||= User.find_by(email: auth.info.email) # User did a regular sign up in the past.
+      if user
+        user.update(user_params)
+      else
+        user = User.new(user_params)
+        user.password = Devise.friendly_token[0,20]  # Fake password for validation
+        user.save
+      end
 
-    return user
-  end
+      return user
+    end
 
 
     def first_next_event
      self.events.where(status: "pending").order(start_date: :asc).first
-    end
+   end
 
-    def active_event
-      self.events.where(status: "active").first
-    end
-
-
-def trigger_emergency
-
-account_sid = ENV['ACCOUNT_SID']
-auth_token = ENV['AUTH_TOKEN']
-@client = Twilio::REST::Client.new(account_sid, auth_token)
-@client.messages.create(
-                             body: 'Hello there!',
-                             from: 'whatsapp:+441618507453',
-                             to: 'whatsapp:+18033671560'
-                           )
-p "hellsssso"
-end
+   def active_event
+    self.events.where(status: "active").first
+  end
 
 
-
-#User.find(2).events.first.emergency_contact_events.first.emergency_contact.phone_number
+  def trigger_emergency(event)
+    account_sid = ENV['ACCOUNT_SID']
+    auth_token = ENV['AUTH_TOKEN']
+    @client = Twilio::REST::Client.new(account_sid, auth_token)
+    @client.messages.create(
+     body: 'Hello there!',
+     from: 'whatsapp:+441618507453',
+     to: 'whatsapp:+18033671560'
+     )
+    p "Send message"
+  end
 
 
 
