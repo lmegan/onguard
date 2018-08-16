@@ -9,11 +9,9 @@
     <div class="top-event-container">
       <div class="row">
         <div class="col-xs-12" >
-          <div class="event-show-name"><h4><%= @event.name %></h4> <span class="event-status"><% if @event.active == true %>
-            <p>Status: Active</p>
-            <% elsif @event.active == false %>
-            <p>Status: Inactive</p>
-            <% end %> </span>
+          <div class="event-show-name"><h4><%= @event.name %></h4> <span class="event-status">
+            <p>Status: <%= @event.status %></p>
+             </span>
           </div>
           <div class="event-dates-container">
             <div class="event-dates">
@@ -30,9 +28,10 @@
         </div>
       </div>
 
-      <div class="event-line-in-box"></div>
+
 
       <div class="col-xs-12 col-sm-8">
+        <div class="event-line-in-box"></div>
         <div class="event-show-description">
           <p><%= @event.description %></p>
         </div>
@@ -40,17 +39,16 @@
       </div>
 
 
-
-      <p>Location:  <%= @event.location %></p>
+      <div class="location-event-show">
+      <p>Location: <%= @event.location %></p>
+    </div>
      <!--  <div class="col-xs-12" > -->
         <div class="links-from-event-show-page">
           <button type="button" class="btn btn-standard big" data-toggle="modal" data-target="#myModal">Update Event</button>
           <%= link_to "Delete event", event_path(@event.slug),
             method: :delete,
             data: { confirm: "Are you sure?" }, class: "btn-standard big" %>
-          <% if @event.active == true %>
-            <%= link_to "Deactivate Event", deactivate_event_path(@event.slug),  method: :post, class: "btn-standard big" %>
-          <% end %>
+
         </div>
      <!--  </div> -->
       </div>
