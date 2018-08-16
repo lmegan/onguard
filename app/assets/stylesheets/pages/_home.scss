@@ -25,11 +25,13 @@ body {
 .head-home-content h1 {
   font-size: 50px;
   text-align: center;
+  color: #1D8EC6;
 }
 
 .head-home-content h3 {
   color: grey;
   text-align: center;
+  margin-bottom: 50px;
 }
 
 .butn-fb-home h4 {
@@ -52,9 +54,15 @@ body {
   text-align: center;
 }
 
+.section-icon{
+  text-align: center;
+  margin-top: 40px;
+}
+
 .wraper-one {
   margin-top: 100px;
-  background-color: rgb(0, 125, 210);
+  background-color: #e2e2e2;
+  // background-color: rgb(0, 125, 210);
   background-size: 100%;
   width: 100vw;
   color: white;
@@ -65,8 +73,8 @@ body {
 }
 
 .wraper-one h3 {
-  margin-top: 80px;
-  font-size: 40px;
+  margin-top: 40px;
+  font-size: 35px;
 }
 
 .bot-img-home {
@@ -76,21 +84,22 @@ body {
 }
 
 .wraper-two {
-  margin-top: 100px;
+  margin-top: 40px;
   width: 100vw;
 }
 
-.wraper-two h3, .wraper-two p, .wraper-two a {
-  margin-left: 100px;
+.wraper-two h3, .wraper-two h4, .wraper-two p, .wraper-two a {
+  margin-left: 30px;
+  text-align: center;
 }
 
 .wraper-two h3 {
-  font-size: 40px;
+  font-size: 35px;
 }
 
 .wraper-two p {
   color: rgb(160, 167, 174);
-  margin-right: 150px;
+  margin-right: 30px;
   margin-top: 30px;
   font-weight: lighter;
 }
@@ -111,7 +120,7 @@ body {
 
 .wraper-two section {
   margin: 5px 0;
-  padding: 150px 0;
+  // padding: 150px 0;
 }
 
 
