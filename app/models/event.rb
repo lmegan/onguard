@@ -39,11 +39,11 @@ class Event < ApplicationRecord
     end
   end
 
-  def set_event_number
-    loop do self.event_number = SecureRandom.hex(2)
-      break unless Event.where(event_number: event_number).exists?
-    end
-  end
+  # def set_event_number
+  #   loop do self.event_number = SecureRandom.hex(2)
+  #     break unless Event.where(event_number: event_number).exists?
+  #   end
+  # end
 
 
 end
