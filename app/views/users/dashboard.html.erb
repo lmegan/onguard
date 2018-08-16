@@ -87,7 +87,8 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div> <img src="https://maps.googleapis.com/maps/api/staticmap?&zoom=13&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C<%= @event.latitude %>,<%= @event.longitude %>&key=<%= ENV['GOOGLE_STATIC_MAP_KEY'] %>" class="event-map"> </div>
+                 <img src="https://maps.googleapis.com/maps/api/staticmap?&zoom=13&size=600x310&maptype=roadmap&markers=color:blue%7Clabel:S%7C<%= event.latitude %>,<%= event.longitude %>&key=<%= ENV['GOOGLE_STATIC_MAP_KEY'] %>" class="show-map">
+                  </div>
 
                 </div>
               <% end %>
