@@ -1,26 +1,45 @@
+.modal.in .modal-dialog {
+  margin: 0;
+
+}
+
+.modal {
+  left: -1px;
+  top: -1px;
+}
+
+.header-text {
+  display: flex;
+}
 
 .modal-content {
-  width: 400px;
-  border-radius: 30px;
-
-  // background-color: #1d97c1;
+  width: 416px;
 
 }
 
 .modal-title {
-  margin-top: -20px;
+
   text-align: center;
   margin-bottom: 15px;
+  color: white;
+  font-weight: lighter;
+
 
 }
 .modal-header {
-  padding: 25px;
-  margin-top: -70px;
+  background-color: #1d97c1;
   border: none;
-  margin-bottom: 20px;
+  height: 60px;
 
 }
 
 .modal-body {
+padding: 10px;
+}
+
+.form-control {
+  font-size: 16px;
+  border-radius: 10px;
+  font-weight: lighter;
 
 }

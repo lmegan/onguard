@@ -1,120 +1,117 @@
+
 <div class="dashboard">
-<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('https://snazzy-maps-cdn.azureedge.net/assets/7-icy-blue.png?v=20170626063457');">
-  <div class="banner-content">
-    <h1>Dashboard</h1>
-    <p>Welcome <%= @user.first_name %></p>
+  <div id="d-wrapper">
+    <div class="zig-zag-wrapper">
+      <div class="zig-zag-bottom" id="welcome">
+        <h2>Welcome, <%= @user.first_name %><%= " " %><%= @user.last_name %></h2>
+      </div>
+      <div class="zig-zag"></div>
+    </div>
   </div>
-</div>
 
-<div class="dashboard-container">
-  <div class="row dashboard-row">
-    <div class="col-lg-8 col-xs-12">
-      <div class="row">
-        <div class = "col-md-6">
-          <div class="card">
-            <div class="card-description">
-              <h2>Welcome, <%= @user.first_name %><%= " " %><%= @user.last_name %></h2>
-            </div>
-            <!-- <img class="card-user" src="https://kitt.lewagon.com/placeholder/users/tgenaitay"> -->
-            <% avatar_url = current_user.facebook_picture_url || "http://placehold.it/250x250" %>
-            <%= image_tag avatar_url, class: "card-user" %>
-            <button type="button" id="event-button" data-toggle="modal" data-target=".bd-example-modal-lg"><h4>Create a new Event</h4></button>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="card2">
-            Google Calendar
-          </div>
-        </div>
-      </div>
 
-      <div class="row">
-        <div class= "col-md-12">
-          <div class="event-cards">
-          <% if @events.count >= 1  %>
-          <div class="event-title">Your events</div>
-            <% @events.each do |event| %>
-            <%= link_to event_path(event.slug) do %>
-            <div class="event-card">
-              <div class="col-xs-12 col-lg-6" id="ecn">
-                <div class="row">
-                  <div class="col-xs-6 col-lg-6">
-                    <div class="event-card-name">
-                      <%= event.name %>
-                    </div>
-                  </div>
-                  <div class="col-xs-6 col-lg-6">
-                    <div class="event-card-start-time">
-                      <p>From:</p>
-                      <%= event.start_date.strftime("%-d/%-m/%y: %k:00") %>
-                    </div>
-                    <div class="event-card-end-time">
-                      <p>To: </p>
-                      <%= event.end_date.strftime("%-d/%-m/%y: %k:00") %>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="event-card-description">
-                    <%= event.description %>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="event-card-emerg">
-                    <p>Contacts to notify:</p>
-                    <%= event.emergency_contacts.pluck(:first_name).join(", ") %>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xs-12 col-lg-6">
-                <div class="event-card-location">
-                  <%= event.location %>
-                  <div> <img src="https://maps.googleapis.com/maps/api/staticmap?center=<%= CGI.escape "#{event.location}" %>&zoom=13&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C<%= event.latitude %>,<%= event.longitude %>&key=AIzaSyDAC0TPT8VTsQ64MxkQT8gz9O9bGOfLUfs" class="event-map"> </div>
-                </div>
-              </div>
-            </div>
-            <% end %>
-            <% end %>
-          <% else %>
-            <div class="no-events">You have no events to display</div>
-          <% end %>
-        </div>
-      </div>
+  <div class="row">
+    <div class="col-xs-6 dashboard-menu">
+      <div class="dashboard-menu-item">
+        <i class="fas fa-plus" style="color:#9c9c9c" height="50px"></i>
+      <button type="button" id="event-button" data-toggle="modal" data-target=".bd-example-modal-lg"><p>Create a new Event</p></button>
       </div>
     </div>
-    <div class="col-lg-4 col-xs-12">
-      <div class="emergency">
-        <div class="emerg-button">
-          <%= link_to "Notify Contacts", emergency_path, method: :post, :class=> "help" %>
-        </div>
-        <div>
-          <p class="notice">Please note, if you are in serious danger please also contact your local authorities.</p>
-        </div>
-        <div>
-          <p class="notice-info">Clicking the link above will notify the emergency contacts you specified for your current event. They will receive a Whatsapp message that contains a link directing them to a page with your event details and event log.</p>
+    <div class="col-xs-6 dashboard-menu">
+      <div class="dashboard-menu-item">
+        <i class="fas fa-exclamation-triangle" style="color:#9c9c9c"></i>
+        <%= link_to "Notify Contacts", emergency_path, method: :post, :class=> "help" %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-6 dashboard-menu">
+      <div class="dashboard-menu-item">
+        <i class="fas fa-phone" style="color:#9c9c9c" height="50px"></i>
+        <button type="button" class="contact-button" data-toggle="modal" data-target=".bd-example-modal-sm">Add emergency contact</button>
+      </div>
+    </div>
+    <div class="col-xs-6 dashboard-menu">
+      <div class="dashboard-menu-item">
+        <i class="fab fa-facebook-messenger" style="color:#9c9c9c"></i>
+        <div class="small-font"><p>Going out for your event?</p></div>
+        <%= link_to "Connect with Chatbot", dashboard_path, :class=> "help" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion" id="accordionExample">
+    <div class="card">
+      <div class="card-header" id="headingOne">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+            Events
+          </button>
+        </h5>
+      </div>
+
+      <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="card-body">
+          <div class="event-cards">
+            <% if @events.count >= 1  %>
+              <% @events.each do |event| %>
+
+              <%= link_to event_path(event.slug) do %>
+                <div class="row">
+
+                  <%= event.name %>
+                </div>
+                <div class="row" id="event-date-time">
+                  <div class="col-xs-6">
+                    <p>From:</p>
+                    <%= event.start_date.strftime("%-d/%-m/%y: %k:00") %>
+                  </div>
+                  <div class="col-xs-6">
+                    <p>To: </p>
+                    <%= event.end_date.strftime("%-d/%-m/%y: %k:00") %>
+                  </div>
+                </div>
+                <div class="row" id="event-description">
+                  <%= event.description %>
+                </div>
+                <div class="row" id="event-contacts">
+                  <p>Contacts to notify:</p>
+                  <%= event.emergency_contacts.pluck(:first_name).join(", ") %>
+                </div>
+                <div class="row" id="event-location">
+                  <%= event.location %>
+
+                </div>
+                <div class="row">
+                  <div> <img src="https://maps.googleapis.com/maps/api/staticmap?center=<%= CGI.escape "#{event.location}" %>&zoom=13&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C<%= event.latitude %>,<%= event.longitude %>&key=ENV[GOOGLE-STATIC-MAP-KEY]" class="event-map"> </div>
+
+                </div>
+              <% end %>
+              <% end %>
+            <% else %>
+              <div class="no-events">You have no events to display</div>
+            <% end %>
+          </div>
         </div>
       </div>
-      <div class="dashboard-messenger">
-        <h4>Chat via Facebook Messenger</h4>
-        <div class="dashboard-messenger-desc"><p>Don't forget! During your event you can add information to your event log by chatting and uploading via Facebook messenger.</p>
-        <img class="img" src="https://en.facebookbrand.com/wp-content/uploads/2016/09/messenger_icon2.png"></div>
+    </div>
+    <div class="card">
+      <div class="card-header" id="headingTwo">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            Emergency Contacts
+          </button>
+        </h5>
       </div>
-      <div class="emergency-contact-list" style="overflow-y: scroll">
-        <div class="emergency-contacts-title">
-        <h5>Emergency contacts:</h5>
-        <button type="button" class="contact-button" data-toggle="modal" data-target=".bd-example-modal-sm">+</button>
-        </div>
-        <div style="overflow-y: scroll">
-        <div>
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+        <div class="card-body">
           <% @emergency_contacts.each do |emergency_contact| %>
           <div class="row" id="emerg-contact-row">
-            <div class="col-xs-4">
+            <div class="col-xs-5">
               <%= emergency_contact.first_name %>
               <%= emergency_contact.last_name %>
             </div>
-            <div class="col-xs-5">
+            <div id="phone-icon" class="col-xs-5">
               <i class="fas fa-phone"></i>
               <%= emergency_contact.phone_number %>
             </div>
@@ -122,21 +119,33 @@
               <%= link_to emergency_contact_path(emergency_contact),
                   method: :delete,
                   data: { confirm: "Are you sure?" } do %>
-                  <i class="far fa-trash-alt"></i>
-                  <% end %>
+              <i class="far fa-trash-alt"></i>
+              <% end %>
             </div>
+          </div>
+          <% end %>
         </div>
-        <% end %>
-        <div>
-        <div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header" id="headingThree">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            Calendar
+          </button>
+        </h5>
+      </div>
+      <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+        <div class="card-body">
+          <%= month_calendar do |date| %>
+            <%= date.day %>
+          <% end %>
         </div>
       </div>
     </div>
   </div>
-  </div>
 </div>
-</div>
-</div>
+
 
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
@@ -150,7 +159,7 @@
       <div class="modal-body">
         <div class="event-form-container">
         <div class="col-xs-12">
-        <%= simple_form_for @event do |f| %>
+        <%= simple_form_for @event, url: events_path, method: :post do |f| %>
         <div class="form-input">
         <%= f.input :name %>
           <div class="event-dates-container">
@@ -182,6 +191,7 @@
 </div>
 </div>
 
+
 <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
@@ -211,7 +221,6 @@
     </div>
   </div>
 </div>
-
 
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script type="text/javascript">
@@ -309,8 +318,6 @@ flatpickr(endTime, {
 
       }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_BROWSER_KEY'] %>&libraries=places&callback=initMap"
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_BROWSER_KEY'] %>&libraries=places&callback=initMap"
       async defer></script>
-
-
 
