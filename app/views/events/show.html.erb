@@ -30,6 +30,8 @@
 
 
 
+
+
       <div class="col-xs-12 col-sm-8">
         <div class="event-line-in-box"></div>
         <div class="event-show-description">
@@ -61,7 +63,7 @@
     <li class="message">
       <div class="message-date">
         <p><strong>Date Received</strong></p>
-        <p><%= event_log.created_at %></p>
+        <p><%= event_log.created_at.strftime("%b %e, %l:%M %p") %></p>
       </div>
       <div class="message-body">
         <p><%= event_log.description %></p>
