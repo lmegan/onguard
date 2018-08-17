@@ -21,8 +21,10 @@ class User < ApplicationRecord
     user_params.merge! auth.info.slice(:email, :first_name, :last_name)
     user_params[:facebook_picture_url] = auth.info.image
     user_params[:token] = auth.credentials.token
-    user_params[:token_expiry] = Time.at(auth.credentials.expires_at)
+    #user_params[:token_expiry] = Time.at(auth.credentials.expires_at)
     user_params = user_params.to_h
+
+
 
     user = User.find_by(provider: auth.provider, uid: auth.uid)
       user ||= User.find_by(email: auth.info.email) # User did a regular sign up in the past.
@@ -53,7 +55,7 @@ class User < ApplicationRecord
     auth_token = ENV['AUTH_TOKEN']
     @client = Twilio::REST::Client.new(account_sid, auth_token)
     @client.messages.create(
-     body: "Hello there, a friend of yours is in danger, please immediatly go to that url: http://localhost:3000/events/#{Event.last.slug}",
+     body: "Hello there, a friend of yours is in danger, please immediatly go to that url: https://www.onguard.live/events/#{Event.last.slug}",
      from: 'whatsapp:+441618507453',
      to: 'whatsapp:+18033671560'
      )

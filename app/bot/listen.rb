@@ -6,6 +6,7 @@ Bot.on :message do |message|
   user = User.find_by_sender_id message.sender["id"]
   #we check if the message is text, photo or location(location still to implement). The method is defined at the end of the page. We store the string that we want to save in a variable called text
   text = set_text(message)
+  puts "hey"
   #check if user exists
 if user
   #check if user has events
@@ -17,7 +18,7 @@ if user
         #we select the only active event
          event = user.active_event
          #trigger the contact
-         p "Contact"
+         message.reply(text: "Your details have been sent to your emergency contact")
          user.trigger_emergency(event)
       # close the event
       elsif (text == "stop")
@@ -30,19 +31,18 @@ if user
       else
           event = user.active_event
           EventLog.new(description: text, event: event).save
-          message.reply(text: "Your info has been stored")
-          message.reply(text: "Anything else ?")
+          message.reply(text: "Your info has been stored, anything else ?")
       end
     #The method first_next_event is defined in the user model and it will order all the events checking the start date. The first event will be the closest. Fisrt we check that User has pending event that are ready to start, than we check that the event start date is less than TimeNow: ex the event is at 18.00 and we text at 18.01. The bot automatically knows that he has to start to track that event. If yes we create a new event log and we sart to track the event (event: active)
-    elsif user.events.where(status: "pending").any? && user.first_next_event.start_date <= Time.now
+    elsif user.events.where(status: "pending").any? && user.first_next_event.start_date <= (Time.now + 8.hour)
         event = user.first_next_event
         event.status = "active"
         EventLog.new(description: "OnGuard is protecting  for the event #{event.name}", event: event).save
         EventLog.new(description: "#{text}", event: event).save
         event.save
-        message.reply(text: "Hello #{user.first_name}! I'm starting to register your event #{event.name}")
+        message.reply(text: "Hello #{user.first_name}! I'm starting to register your event #{event.name}. The end time is set for #{event.end_date.strftime("%b %e, %l:%M %p")}. Have a nice time :) ")
     #In this case we have events ready to be started but we write too early. The bot will order the event with the methods first_next_event and will tell us the date of our next event
-    elsif user.events.where(status: "pending").any? && !(user.first_next_event.start_date < Time.now)
+    elsif user.events.where(status: "pending").any? && !(user.first_next_event.start_date < (Time.now + 8.hour))
         event = user.first_next_event
         message.reply(text: waiting_for_a_new_event(user, event) )
     else
@@ -64,7 +64,7 @@ else
         buttons: [
           {
             type: 'account_link',
-            url: 'https://8cdfe6c9.ngrok.io/users/sign_in'
+            url: 'https://www.onguard.live/users/sign_in'
           },
         ]
       }
@@ -84,7 +84,7 @@ end
 
 
 def waiting_for_a_new_event(user, event)
- return "Hey #{user.first_name}. Sems like you don't have any event now! Your next event #{event.name} will start #{event.start_date.strftime("%A, %b %d")}"
+ return "Hey #{user.first_name}. Sems like you don't have any event now! Your next event #{event.name} will start #{event.start_date.strftime("%b %e, %l:%M %p")}"
 end
 
 #we call this method at the beginning of the bot to know if the message is a photo, a location or a test. In these cases we store the message to save or the link of the photo in the variable text
