@@ -10,6 +10,9 @@
     content: "\e080";    /* adjust as needed, taken from bootstrap.css */
 }
 
+.panel-heading {
+  border-bottom: none;
+}
 #event-button {
   border: none;
 }
@@ -67,9 +70,10 @@ button.close {
 .help {
   font-size: 20px;
   color: #0099c7;
+  text-decoration: none !important;
 }
 .small-font {
-  font-size: 10px;
+  font-size: 15px;
   font-weight: lighter;
 }
 
