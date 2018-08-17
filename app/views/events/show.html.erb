@@ -7,7 +7,9 @@
   <% else %>
      <img src="https://maps.googleapis.com/maps/api/staticmap?&zoom=13&size=600x310&maptype=roadmap&markers=color:blue%7Clabel:S%7C<%= @map[0] %>,<%= @map[1] %>&key=<%= ENV['GOOGLE_STATIC_MAP_KEY'] %>" class="show-map">
     <div class="location-event-show">
-      <p>Location: <%= @address if @address %></p>
+      <% if @address %>
+          <p>Location: <%= @address if @address %></p>
+      <% end %>
     </div>
   <% end %>
 </div>
