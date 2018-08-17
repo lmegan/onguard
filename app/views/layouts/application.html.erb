@@ -4,7 +4,7 @@
 
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>TODO</title>
+    <title>onGuard</title>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
@@ -19,21 +19,21 @@
     <%= render 'shared/flashes' %>
     <%= yield %>
     <!-- facebook login stuff -->
-    <% unless current_user %>
+ <!--    <% unless current_user %>
   <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %>
   <% else %>
   <%= current_user[:name] %>
   <% link_to "Logout", destroy_user_session_path, method: :delete %>
-  <% end %>
+  <% end %> -->
   <!-- faceboook login stuff -->
 
-  <% if user_signed_in? && current_user[:phone_number] == nil %>
+<!--   <% if user_signed_in? && current_user[:phone_number] == nil %>
 
   <%= render 'shared/phone_form', user: current_user %>
 
    <% else %>
    <% link_to root_path %>
-   <% end %>
+   <% end %> -->
 
    <%= render 'shared/footer' %>
     <%= javascript_include_tag 'application' %>

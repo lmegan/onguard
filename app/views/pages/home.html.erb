@@ -5,8 +5,11 @@
     </div>
     <div class="col-sm-6 col-md-6 col-lg-6">
       <div class="head-home-content">
-        <h1>Send messages to <br> your bot when <br> you go out</h1>
-        <h3>Alert your contacts if needed</h3>
+        <div class="section-icon">
+          <%= image_tag "logo-down.png", height: '60px', width: 'auto'%>
+        </div>
+        <h1>Date safely!</h1>
+        <h3>By updating your chatbot, not your mum.</h3>
         <% if !user_signed_in?  %>
         <div class="butn-fb-home">
           <%= link_to user_facebook_omniauth_authorize_path, :class => "sign-up-home" do %>
@@ -14,69 +17,107 @@
           <%end %>
         </div>
         <p>We'll never post without your approval</p>
-        <%end  %>
+        <% end  %>
       </div>
     </div>
   </div>
 </div>
 
 
-  <div class="container wraper-one">
+  <!-- <div class="container wraper-one">
     <div class="row">
       <div class="col-sm-12 col-md-8 col-lg-8">
-        <h3>Go out without thinking</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco</p>
+        <div class="hidden-lg hidden-md section-icon">
+          <%= image_tag "Event icon.png"%>
+        </div>
+        <h3>Safety with privacy</h3>
+        <p>Going on a Tinder date and want people to know only if you feel unsafe? Tell your bot where and when you are going, and who you are meeting up with.</p>
       </div>
       <div class="hidden-sm hidden-xs col-md-4 col-lg-4">
         <img class="bot-img-home" src="https://steemitimages.com/DQmYiVnUmgyZfsqv833TVSGbdF8ZmwpdzKtSB6jMrpc2hpN/U5dtbtmN8nnxiQePKBzAJoXMPKWWJLx_1680x8400.png">
       </div>
     </div>
-  </div>
+  </div> -->
 
 
 
   <div class="container wraper-two">
     <div class="row">
       <div class="col-sm-12 col-md-8 col-lg-8">
+        <h3>Safe dating with privacy</h3>
         <section id="one">
-        <h3>Share your location</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco</p>
-        <a href="#">Learn more</a>
-        </section>
+        <div class="hidden-lg hidden-md section-icon">
+          <%= image_tag "Event icon.png"%>
+        </div>
+        <h4>Store your date details</h4>
+        <p>Going on a Tinder date and want people to know only if you feel unsafe? Tell your bot where and when you are going, and who you are meeting up with.</p>
 
         <section id="two">
-        <h3 class="next-row">Do something else</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco</p>
-        <a href="#">Learn more</a>
+        <div class="hidden-lg hidden-md section-icon">
+          <%= image_tag "map.png"%>
+        </div>
+        <h4>Log updates as you go</h4>
+        <p>Keep your bot updated by sharing text, pics and locations during your event.</p>
         </section>
 
         <section id="three">
-        <h3 class="next-row">Do another thing</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco</p>
-        <a href="#">Learn more</a>
-        <h6>.</h6>
+        <div class="hidden-lg hidden-md section-icon">
+          <%= image_tag "phone-book.png"%>
+        </div>
+        <h4 class="next-row">Alert your contacts if needed</h4>
+        <p>Feel secure knowing that asking your bot for help at any time will send all information about your event to your nominated contact.</p>
+        </section>
+
+        <section id="four">
+        <div class="hidden-lg hidden-md section-icon">
+          <%= image_tag "start icon.png"%>
+        </div>
+        <h3 class="next-row">Get started now!</h3>
+        <p>Sign up and in just moments you can be dating more safely with OnGuard.  </p>
+        <% if !user_signed_in?  %>
+        <div class="head-home-content butn-fb-home">
+          <%= link_to user_facebook_omniauth_authorize_path, :class => "sign-up-home" do %>
+          <h4>Sign-up with Facebook</h4>
+          <% end %>
+          <p>We'll never post without your approval</p>
+        </div>
+        <%end  %>
         </section>
       </div>
-      <div class="hidden-sm hidden-xs col-md-4 col-lg-4 vid">
+      <div class="hidden-xs col-md-4 col-lg-4 vid">
         <%= video_tag "https://res.cloudinary.com/ebc-industries/video/upload/v1534130774/bot-full-on.mp4", :size => "280x530",:id => "vidhome", :autoplay => true, :muted => true %>
       </div>
     </div>
   </div>
 
-  <div class="review-home">
+  <!-- <div class="container wraper-two">
+    <div class="row">
+      <div class="col-sm-12 col-md-8 col-lg-8">
+        <h3>Get started now!</h3>
+        <section id="one">
+        <div class="hidden-lg hidden-md section-icon">
+          <%= image_tag "start icon.png"%>
+        </div>
+        <h4>Sign up and in just moments you can be dating more safely with OnGuard.  </h4>
+        <% if !user_signed_in?  %>
+        <div class="head-home-content butn-fb-home">
+          <%= link_to user_facebook_omniauth_authorize_path, :class => "sign-up-home" do %>
+          <h4>Sign-up with Facebook</h4>
+          <% end %>
+          <p>We'll never post without your approval</p>
+        </div>
+        <%end  %>
+        </section>
+      </div>
+    </div>
+  </div> -->
+
+  <div class="wraper-two">
     <div class="row">
       <div class="col-md-3 col-lg-3"></div>
       <div class="col-sm-12 col-md-6 col-lg-6">
-        <img src="https://res.cloudinary.com/ebc-industries/image/upload/v1534155047/review3.png">
-        <p>a lost webdev</p>
+        <p><strong><i>"I date a LOT, and OnGuard means that I can keep my friends and family informed only if need them!"</i></strong></p>
+        <p>- Tanguy</p>
       <div class="col-md-3 col-lg-3"></div>
       </div>
     </div>

@@ -14,8 +14,15 @@
 width: 100%;
 p {
   font-size: 16px;
+  font-weight: lighter;
+  margin-left:8px;
 }
 
+}
+
+.location-event-show {
+  margin-left: 10px;
+  margin-right: 2px;
 }
 
 .show-map {
@@ -40,10 +47,13 @@ border-top: 1px solid #dce0e0;
   margin-top: -10px;
   background-color: white;
   min-width: 350px;
-  padding-bottom: 20px;
+  margin-bottom: -4px;
 }
 .event-show-name {
 color: #1d97c1;
+h4 {
+  padding-left: 4px;
+}
 }
 
 .event-show-description {
@@ -64,10 +74,15 @@ margin-bottom: 20px;
 .event-dates {
 color: #5c696f;
 }
+.event-dates-container {
+  display: flex;
+  padding-bottom: 10px;
+  padding-left: 8px;
+   }
 
 .links-from-event-show-page {
 
-margin-bottom: 20px;
+
 margin-top: 10px;
 
 min-width: 307px;
@@ -94,8 +109,8 @@ min-width: 500px;
 }
 
 .event-log-title {
-margin-top: 10px;
-padding-left: 50px;
+margin-top: 20px;
+padding-left: 20px;
 color: #1d97c1;
 
 }
