@@ -8,8 +8,8 @@
         <div class="section-icon">
           <%= image_tag "logo-down.png", height: '120px', width: 'auto'%>
         </div>
-        <h1>Date safely!</h1>
-        <h3>By updating your chatbot, not your mum.</h3>
+        <h1>Stay safe!</h1>
+        <h3>When you go out update your chatbot, not your mum.</h3>
         <% if !user_signed_in?  %>
         <div class="butn-fb-home">
           <%= link_to user_facebook_omniauth_authorize_path, :class => "sign-up-home" do %>
@@ -23,18 +23,16 @@
   </div>
 </div>
 
-<hr>
-
-  <div class="container wraper-two">
+  <div class="container wraper-two background-color">
     <div class="row">
       <div class="col-sm-12 col-md-8 col-lg-8">
-        <h3>Safe dating, privately!</h3>
+        <h3>How it works</h3>
         <section id="one">
         <div class="hidden-lg hidden-md section-icon">
           <%= image_tag "Event icon.png"%>
         </div>
-        <h4>Store your date details</h4>
-        <p>Going on a Tinder date and want people to know only if you feel unsafe? Tell your bot where and when you are going, and who you are meeting up with.</p>
+        <h4>Store your event details</h4>
+        <p>Meeting up with someone and want people to know only if you feel unsafe? Tell your bot where and when you are going, and who you are meeting up with.</p>
 
         <section id="two">
         <div class="hidden-lg hidden-md section-icon">
@@ -59,7 +57,6 @@
     </div>
   </div>
 
-  <hr>
   <% if !user_signed_in?  %>
   <div class="container wraper-two">
     <div class="row">
