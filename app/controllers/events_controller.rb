@@ -7,9 +7,13 @@ class EventsController < ApplicationController
   end
 
   def show
-
     @user = @event.user
     @event_logs = @event.event_logs
+    @map = @event.event_logs.pluck(:description).reverse.detect {|event| event.include?("bing") && event.include?("facebook")}
+    if @map
+      @map = URI.unescape(@map).split(/where1=(.*?)&FORM=/)[1].split("%2C+")
+      @address = Geocoder.search(@map).first.formatted_address
+    end
   end
 
   def new
