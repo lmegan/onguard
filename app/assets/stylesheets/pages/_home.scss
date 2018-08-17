@@ -159,10 +159,6 @@ h1, h3 {
   .head-home-content h1 {
   font-size: 48px;
 }
-.butn-fb-home h4 {
-  width: 300px;
-  margin: 0 auto;
-}
 }
 
 @media (max-width: 991px) {
@@ -193,8 +189,10 @@ h1, h3 {
 
 @media (max-width: 767px) {
   .butn-fb-home h4 {
-  margin-right: 30%;
-  margin-left: 30%;
+  // margin-right: 30%;
+  // margin-left: 30%;
+  width: 75%;
+  margin: 0 auto;
 }
 }
 
