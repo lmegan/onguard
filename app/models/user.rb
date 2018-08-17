@@ -55,7 +55,7 @@ class User < ApplicationRecord
     auth_token = ENV['AUTH_TOKEN']
     @client = Twilio::REST::Client.new(account_sid, auth_token)
     @client.messages.create(
-     body: "Hello there, a friend of yours is in danger, please immediatly go to that url: http://localhost:3000/events/#{Event.last.slug}",
+     body: "Hello there, a friend of yours is in danger, please immediatly go to that url: https://www.onguard.live/events/#{Event.last.slug}",
      from: 'whatsapp:+441618507453',
      to: 'whatsapp:+18033671560'
      )
