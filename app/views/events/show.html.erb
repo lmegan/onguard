@@ -1,8 +1,18 @@
 <div class="banner-event">
-
-    <img src="https://maps.googleapis.com/maps/api/staticmap?&zoom=13&size=600x310&maptype=roadmap&markers=color:blue%7Clabel:S%7C<%= @event.latitude %>,<%= @event.longitude %>&key=<%= ENV['GOOGLE_STATIC_MAP_KEY'] %>" class="show-map">
-  <div class="banner-content"></div>
+  <% if !@map %>
+         <img src="https://maps.googleapis.com/maps/api/staticmap?&zoom=13&size=600x310&maptype=roadmap&markers=color:blue%7Clabel:S%7C<%= @event.latitude %>,<%= @event.longitude %>&key=<%= ENV['GOOGLE_STATIC_MAP_KEY'] %>" class="show-map">
+    <div class="location-event-show">
+      <p>Location: <%= @event.location %></p>
+    </div
+  <% else %>
+     <img src="https://maps.googleapis.com/maps/api/staticmap?&zoom=13&size=600x310&maptype=roadmap&markers=color:blue%7Clabel:S%7C<%= @map[0] %>,<%= @map[1] %>&key=<%= ENV['GOOGLE_STATIC_MAP_KEY'] %>" class="show-map">
+    <div class="location-event-show">
+      <p>Location: <%= @address if @address %></p>
+    </div>
+  <% end %>
 </div>
+
+
 
 <div class="event-show-container">
   <div class="event-details-box">
@@ -35,13 +45,9 @@
         </div>
          <div class="event-line-in-box"></div>
       </div>
-
-
-      <div class="location-event-show">
-      <p>Location: <%= @event.location %></p>
-      <div class="event-line-in-box"></div>
-      <p>Emergency Contact: <%= @event.emergency_contacts.pluck(:first_name).join(", ") %></p>
-
+        <div class="emergency-contact-event">
+         <p>Emergency Contact: <%= @event.emergency_contacts.pluck(:first_name).join(", ") %></p>
+        </div>
 
 
     </div>
