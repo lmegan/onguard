@@ -28,10 +28,6 @@
         </div>
       </div>
 
-
-
-
-
       <div class="col-xs-12 col-sm-8">
         <div class="event-line-in-box"></div>
         <div class="event-show-description">
@@ -43,6 +39,11 @@
 
       <div class="location-event-show">
       <p>Location: <%= @event.location %></p>
+      <div class="event-line-in-box"></div>
+      <p>Emergency Contact: <%= @event.emergency_contacts.pluck(:first_name).join(", ") %></p>
+
+
+
     </div>
      <!--  <div class="col-xs-12" > -->
         <div class="links-from-event-show-page">
@@ -66,7 +67,19 @@
         <p><%= event_log.created_at.strftime("%b %e, %l:%M %p") %></p>
       </div>
       <div class="message-body">
-        <p><%= event_log.description %></p>
+
+
+
+        <% if event_log.description[0...16] == "https://scontent" %>
+          <img src="<%= event_log.description %>" height="150px" width="200px" >
+        <% elsif event_log.description.include?("bing") && event_log.description.include?("facebook") %>
+       <% latlong =URI.unescape(event_log.description).split(/where1=(.*?)&FORM=/)[1].split("%2C+")  %>
+         <img src="https://maps.googleapis.com/maps/api/staticmap?&zoom=13&size=600x310&maptype=roadmap&markers=color:blue%7Clabel:S%7C<%= latlong[0] %>,<%= latlong[1] %>&key=<%= ENV['GOOGLE_STATIC_MAP_KEY'] %>" class="show-map">
+         <% else  %>
+         <p><%= event_log.description %></p>
+         <% end %>
+
+
       </div>
         </p>
       </div>
