@@ -1,4 +1,4 @@
-  <div class="container head-home-container">
+<div class="container head-home-container">
   <div class="row">
     <div class="hidden-xs col-sm-6 col-md-6 col-lg-6 phones">
       <img class="iphone-head-home" src="https://www.boostmobile.com/content/dam/boostmobile/en/products/phones/apple/iphone-6/gold/device-front.png">
@@ -6,7 +6,7 @@
     <div class="col-sm-6 col-md-6 col-lg-6">
       <div class="head-home-content">
         <div class="section-icon">
-          <%= image_tag "logo-down.png", height: '60px', width: 'auto'%>
+          <%= image_tag "logo-down.png", height: '120px', width: 'auto'%>
         </div>
         <h1>Date safely!</h1>
         <h3>By updating your chatbot, not your mum.</h3>
@@ -23,6 +23,7 @@
   </div>
 </div>
 
+<hr>
 
   <!-- <div class="container wraper-one">
     <div class="row">
@@ -44,7 +45,7 @@
   <div class="container wraper-two">
     <div class="row">
       <div class="col-sm-12 col-md-8 col-lg-8">
-        <h3>Safe dating with privacy</h3>
+        <h3>Safe dating, privately!</h3>
         <section id="one">
         <div class="hidden-lg hidden-md section-icon">
           <%= image_tag "Event icon.png"%>
@@ -68,7 +69,7 @@
         <p>Feel secure knowing that asking your bot for help at any time will send all information about your event to your nominated contact.</p>
         </section>
 
-        <section id="four">
+        <!-- <section id="four">
         <div class="hidden-lg hidden-md section-icon">
           <%= image_tag "start icon.png"%>
         </div>
@@ -82,7 +83,7 @@
           <p>We'll never post without your approval</p>
         </div>
         <%end  %>
-        </section>
+        </section> -->
       </div>
       <div class="hidden-xs col-md-4 col-lg-4 vid">
         <%= video_tag "https://res.cloudinary.com/ebc-industries/video/upload/v1534130774/bot-full-on.mp4", :size => "280x530",:id => "vidhome", :autoplay => true, :muted => true %>
@@ -90,15 +91,17 @@
     </div>
   </div>
 
-  <!-- <div class="container wraper-two">
+  <hr>
+
+  <div class="container wraper-two">
     <div class="row">
-      <div class="col-sm-12 col-md-8 col-lg-8">
-        <h3>Get started now!</h3>
+      <!-- <div class="col-sm-12 col-md-8 col-lg-4"> -->
+        <h3>Be safer now!</h3>
         <section id="one">
         <div class="hidden-lg hidden-md section-icon">
           <%= image_tag "start icon.png"%>
         </div>
-        <h4>Sign up and in just moments you can be dating more safely with OnGuard.  </h4>
+        <p>Sign up and in just moments you can be dating more safely with OnGuard.  </p>
         <% if !user_signed_in?  %>
         <div class="head-home-content butn-fb-home">
           <%= link_to user_facebook_omniauth_authorize_path, :class => "sign-up-home" do %>
@@ -108,18 +111,18 @@
         </div>
         <%end  %>
         </section>
-      </div>
+        <hr>
+      <!-- </div> -->
     </div>
-  </div> -->
+  </div>
 
   <div class="wraper-two">
     <div class="row">
-      <div class="col-md-3 col-lg-3"></div>
-      <div class="col-sm-12 col-md-6 col-lg-6">
+     <!-- <div class="col-sm-12 col-md-8 col-lg-8"> -->
         <p><strong><i>"I date a LOT, and OnGuard means that I can keep my friends and family informed only if need them!"</i></strong></p>
         <p>- Tanguy</p>
-      <div class="col-md-3 col-lg-3"></div>
-      </div>
+      <!-- </div> -->
+      <hr>
     </div>
   </div>
 
