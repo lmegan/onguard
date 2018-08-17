@@ -4,7 +4,8 @@
 
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>onGuard</title>
+    <title>onGuard - Stay safe discretely</title>
+    <%= favicon_link_tag 'favicon.ico' %>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
@@ -27,13 +28,13 @@
   <% end %> -->
   <!-- faceboook login stuff -->
 
-<!--   <% if user_signed_in? && current_user[:phone_number] == nil %>
+<!--   <%# if user_signed_in? && current_user[:phone_number] == nil %>
 
-  <%= render 'shared/phone_form', user: current_user %>
+  <%#= render 'shared/phone_form', user: current_user %>
 
-   <% else %>
-   <% link_to root_path %>
-   <% end %> -->
+   <%# else %>
+   <%# link_to root_path %>
+   <%# end %> -->
 
    <%= render 'shared/footer' %>
     <%= javascript_include_tag 'application' %>

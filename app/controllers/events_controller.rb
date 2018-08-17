@@ -7,9 +7,16 @@ class EventsController < ApplicationController
   end
 
   def show
-
     @user = @event.user
     @event_logs = @event.event_logs
+    @map = @event.event_logs.pluck(:description).reverse.detect {|event| event.include?("bing") && event.include?("facebook")}
+    if @map
+      @map = URI.unescape(@map).split(/where1=(.*?)&FORM=/)[1].split("%2C+")
+      @search = Geocoder.search(@map)
+      if @search.any?
+        @address = @search.first.formatted_address
+      end
+    end
   end
 
   def new
@@ -34,7 +41,7 @@ class EventsController < ApplicationController
     end
     @event.user = @user
     if @event.save
-      redirect_to dashboard_path
+      redirect_to event_path(@event.slug)
     else
       render :new
     end
@@ -62,6 +69,8 @@ end
 
   def destroy
     @event.destroy
+    redirect_to dashboard_path
+
   end
 
   private

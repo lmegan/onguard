@@ -1,6 +1,6 @@
 // main page container
 .banner-event {
-  height: 30vh;
+
   /* if you have a 70px navbar => height: calc(100vh - 70px); */
   background-size: cover !important;
 
@@ -21,8 +21,13 @@ p {
 }
 
 .location-event-show {
-  margin-left: 10px;
-  margin-right: 2px;
+  padding-left: 20px;
+  background-color: #1d98c1;
+  color: #ffffff;
+  font-weight: lighter;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  font-size: 16px;
 }
 
 .show-map {
@@ -79,7 +84,9 @@ color: #5c696f;
   padding-bottom: 10px;
   padding-left: 8px;
    }
-
+.emergency-contact-event {
+ margin-left: 15px;
+}
 .links-from-event-show-page {
 
 
@@ -118,18 +125,18 @@ color: #1d97c1;
 
 .inbox {
   border: 1px solid #dce0e0;
-  padding: 0 20px;
+  padding: 0 10px;
   margin-top: 5px;
   max-width: 96%;
-  margin-left: 32px;
-  margin-right: 32px;
+  margin-left: 20px;
+  margin-right: 20px;
 
 
 }
 .message {
   display: flex;
   align-items: center;
-  padding: 10px;
+  padding-top: 10px;
   border-bottom: 1px solid rgba(220,224,244,0.4);
 }
 .message:last-child {

@@ -3,7 +3,7 @@
     font-family: 'Glyphicons Halflings';  /* essential for enabling glyphicon */
     content: "\e114";    /* adjust as needed, taken from bootstrap.css */
     float: right;        /* adjust as needed */
-    color: grey;         /* adjust as needed */
+    color: white;         /* adjust as needed */
 }
 .panel-heading .accordion-toggle.collapsed:after {
     /* symbol for "collapsed" panels */
@@ -163,6 +163,8 @@ btn-link:hover, .btn-link:focus {
 #event-contacts {
   display: flex;
   background-color: #f2f2f2;
+  font-size: 16px;
+  font-weight: lighter;
   padding-left: 10px;
   padding-top: 15px;
   padding-bottom: 15px;
@@ -175,10 +177,14 @@ btn-link:hover, .btn-link:focus {
   margin-left: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
+  font-size: 16px;
+  font-weight: lighter;
 }
 #event-location {
   margin-left: 10px;
   padding-top: 10px;
+  font-size: 16px;
+  font-weight: lighter;
   padding-bottom: 10px;
   i {
     font-size: 30px;
