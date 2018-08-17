@@ -97,6 +97,7 @@ h1, h3 {
 .wraper-two h3 {
   font-size: 30px;
   text-align: center;
+  margin-bottom: 25px;
 }
 
 .wraper-two h4 {
@@ -155,7 +156,6 @@ h1, h3 {
 }
 
 @media (max-width: 2400px) {
-
 .butn-fb-home h4 {
   width: 340px;
   margin: 0 auto;
@@ -191,6 +191,19 @@ h1, h3 {
 @media (max-width: 767px) {
   .head-home-content {
   margin-top: 0px;
+}
+}
+
+
+@media (max-width: 767px) {
+  .background-color {
+  background-color: #1d97c1;
+}
+}
+
+@media (max-width: 767px) {
+  .background-color p, .background-color h3, .background-color h4 {
+  color: #ffffff;
 }
 }
 
@@ -239,7 +252,9 @@ h1, h3 {
     color: #1d97c1;
 }
 
+#whitefont {
 
+}
 
 
 
